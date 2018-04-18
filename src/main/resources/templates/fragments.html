@@ -18,7 +18,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" th:fragment="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="index.html"><img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}"/></a>
+        <a class="navbar-brand" th:href="@{/}"><img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}"/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive " aria-controls="navbarSupportedContent" aria-expanded="false " aria-label="Toggle navigation ">
             <span class="navbar-toggler-icon "></span>
         </button>
@@ -41,7 +41,7 @@
                         Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Login</a>
+                        <a class="dropdown-item" th:href="@{/myAccount}">Login</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">My Profile</a>
                         <a class="dropdown-item" href="#">Logout</a>
