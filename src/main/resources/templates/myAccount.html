@@ -16,17 +16,17 @@
             <div class="card">
                 <div class="card-header">
                     <ul class="nav nav-tabs" id="myAccountTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab"
-                               aria-controls="login" aria-selected="true">Login</a>
+                        <li class="nav-item ">
+                            <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab"
+                               aria-controls="login" aria-selected="true" th:classappend="${classActiveLogin} ? ' active'">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab"
-                               aria-controls="register" aria-selected="false">Register</a>
+                            <a class="nav-link " id="register-tab" data-toggle="tab" href="#register" role="tab"
+                               aria-controls="register" aria-selected="false" th:classappend="${classActiveRegister} ? ' active'">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="forgot-tab" data-toggle="tab" href="#forgot" role="tab"
-                               aria-controls="forgot" aria-selected="false">Forgot Password</a>
+                               aria-controls="forgot" aria-selected="false" th:classappend="${classActiveForgot} ? ' active'">Forgot Password</a>
                         </li>
                     </ul>
                 </div>
@@ -35,13 +35,13 @@
                     <div class="tab-content">
 
                         <!-- Login Tab -->
-                        <div class="tab-pane active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <div class="tab-pane show " id="login" role="tabpanel" aria-labelledby="login-tab" th:classappend="${classActiveLogin} ? 'show active'">
                             <h3>Login</h3>
                             <form>
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="loginUsername"
-                                           placeholder="Enter Username" required="required" name="username"/>
+                                           placeholder="Enter username" required="required" name="username"/>
 
                                 </div>
                                 <div class="form-group">
@@ -54,8 +54,8 @@
                         </div>
 
                         <!-- Register Tab -->
-                        <div class="tab-pane" id="register" role="tabpanel" aria-labelledby="register-tab">
-                            <h3 class="display-4">Register</h3>
+                        <div class="tab-pane " id="register" role="tabpanel" aria-labelledby="register-tab" th:classappend="${classActiveRegister} ? ' show active'">
+                            <h3>Register</h3>
                             <hr/>
                             <form>
                                 <div class="form-group">
@@ -80,7 +80,7 @@
                         </div>
 
                         <!-- Forgot Tab -->
-                        <div class="tab-pane" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
+                        <div class="tab-pane " id="forgot" role="tabpanel" aria-labelledby="forgot-tab" th:classappend="${classActiveLogin} ? ' show active'">
                             <h3>Forgot Password</h3>
                             <form>
                                 <div class="form-group">

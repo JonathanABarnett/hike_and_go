@@ -15,7 +15,29 @@ public class MyAccountHomeController {
      */
     @GetMapping(value = "/myAccount")
     public String myAccount(Model model) {
-        model.addAttribute("title", "Login/Register");
+        model.addAttribute("title", "Login");
+        model.addAttribute("classActiveLogin", true);
+        return "myAccount";
+    }
+
+    @GetMapping(value = "/login")
+    public String login(Model model) {
+        model.addAttribute("title", "Login");
+        model.addAttribute("classActiveLogin", true);
+        return "myAccount";
+    }
+
+    @GetMapping(value = "/register")
+    public String register(Model model) {
+        model.addAttribute("title", "Register");
+        model.addAttribute("classActiveRegister", true);
+        return "myAccount";
+    }
+
+    @GetMapping(value = "/forgot")
+    public String forgot(Model model) {
+        model.addAttribute("title", "Forgot Password");
+        model.addAttribute("classActiveForgot", true);
         return "myAccount";
     }
 }
