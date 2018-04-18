@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<nav th:replace="fragments::navbar"></nav>
+
+<div class="bg">
+
+    <!-- Card Tabs -->
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-xs-12 col-sm-10 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs" id="myAccountTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab"
+                               aria-controls="login" aria-selected="true">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab"
+                               aria-controls="register" aria-selected="false">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="forgot-tab" data-toggle="tab" href="#forgot" role="tab"
+                               aria-controls="forgot" aria-selected="false">Forgot Password</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body">
+                    <div class="tab-content">
+
+                        <!-- Login Tab -->
+                        <div class="tab-pane active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                            <h3>Login</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="loginUsername"
+                                           placeholder="Enter Username" required="required" name="username"/>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Password"
+                                           required="required" name="password"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </form>
+                        </div>
+
+                        <!-- Register Tab -->
+                        <div class="tab-pane" id="register" role="tabpanel" aria-labelledby="register-tab">
+                            <h3 class="display-4">Register</h3>
+                            <hr/>
+                            <form>
+                                <div class="form-group">
+                                    <label for="registerEmail">Email address</label>
+                                    <input type="email" class="form-control" id="registerEmail"
+                                           aria-describedby="emailHelp" placeholder="Enter email" required="required"
+                                           name="email"/>
+                                    <small id="emailHelp" class="form-text text-muted">Please enter a unique email. All
+                                        emails will be sent to this address.
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="loginUsername">Username</label>
+                                    <input type="text" class="form-control" id="username"
+                                           aria-describedby="usernameHelp" placeholder="Enter username"
+                                           required="required" name="username"/>
+                                    <small id="emailHelp" class="form-text text-muted">Please enter a unique username.
+                                    </small>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </form>
+                        </div>
+
+                        <!-- Forgot Tab -->
+                        <div class="tab-pane" id="forgot" role="tabpanel" aria-labelledby="forgot-tab">
+                            <h3>Forgot Password</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="forgotEmail">Email address</label>
+                                    <input type="email" class="form-control" id="forgotEmail"
+                                           aria-describedby="emailHelp" placeholder="Enter email" required="required"
+                                           name="email"/>
+                                    <small id="emailHelp" class="form-text text-muted">Please enter the email you
+                                        registered with.
+                                    </small>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Forgot</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+<!--- Footer -->
+<footer th:replace="fragments::footer"></footer>
+
+</body>
+
+</html>

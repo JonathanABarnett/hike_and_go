@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<nav th:replace="fragments::navbar"></nav>
+
+<!--- Image Slider -->
+<div id="slides " class="carousel slide " data-ride="carousel ">
+    <ul class="carousel-indicators ">
+        <li data-target="#slides " data-slide-to="0 " class="active "></li>
+        <li data-target="#slides " data-slide-to="1 "></li>
+        <li data-target="#slides " data-slide-to="2 "></li>
+    </ul>
+    <div class="carousel-inner ">
+        <div class="carousel-item active ">
+            <img src="../../resources/static/img/m4.png" th:src="@{/img/m4.png}" />
+            <div class="carousel-caption ">
+                <h1 class="display-2 ">Rocky Mtn. Tours</h1>
+                <h3>Traveling Through the Mountains</h3>
+                <button type="button " class="btn btn-outline-light btn-lg ">VIEW DEMO</button>
+                <button type="button " class="btn btn-outline-light btn-lg ">Get Started</button>
+            </div>
+        </div>
+    </div>
+    <div class="carousel-inner ">
+        <div class="carousel-item ">
+            <img src="../../resources/static/img/m7.png" th:src="@{/img/m7.png}" />
+        </div>
+    </div>
+    <div class="carousel-inner ">
+        <div class="carousel-item ">
+            <img src="../../resources/static/img/m6.png" th:src="@{/img/m6.png}" />
+        </div>
+    </div>
+</div>
+
+<!--- Jumbotron -->
+<div class="container-fluid ">
+    <div class="row jumbotron ">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10 ">
+            <p class="lead ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat cumque ad debitis facere
+                officia eveniet facilis, distinctio fuga sequi neque. Ratione facere maiores cum tempora, magnam fuga
+                illo omnis sit.</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2 ">
+            <a href="# ">
+                <button type="button " class="btn btn-outline-secondary ">More Info</button>
+            </a></div>
+    </div>
+</div>
+
+<!--- Welcome Section -->
+<div class="container-fluid padding">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4">Touring Made Easy</h1>
+        </div>
+        <hr/>
+        <div class="col-12">
+            <p class="lead">Traveling all across the country with the best gear.</p>
+        </div>
+    </div>
+</div>
+
+<!--- Three Column Section -->
+<div class="container-fluid padding">
+    <div class="row text-center padding">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <i class="fas fa-code"></i>
+            <h3>TEXT</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur amet quasi vitae incidunt illum
+                sint! Natus officia eum nulla voluptatum in aperiam itaque illo tenetur sapiente, unde porro, recusandae
+                accusamus.</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <i class="fas fa-code"></i>
+            <h3>TEXT</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur amet quasi vitae incidunt illum
+                sint! Natus officia eum nulla voluptatum in aperiam itaque illo tenetur sapiente, unde porro, recusandae
+                accusamus.</p>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <i class="fas fa-code"></i>
+            <h3>TEXT</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur amet quasi vitae incidunt illum
+                sint! Natus officia eum nulla voluptatum in aperiam itaque illo tenetur sapiente, unde porro, recusandae
+                accusamus.</p>
+        </div>
+    </div>
+    <hr class="my-4"/>
+
+</div>
+
+<!--- Two Column Section -->
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col lg-6">
+            <h2>Information</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quas accusamus, praesentium quo molestiae,
+                maxime suscipit nihil unde est maiores tempore quidem mollitia pariatur ab perferendis a reiciendis, id
+                repudiandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem voluptatum et debitis
+                nostrum corrupti, aspernatur impedit sequi. Beatae eveniet culpa id, facilis laudantium rem. Incidunt
+                laborum molestiae quod illo qui.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus porro provident quod accusantium
+                aliquam sunt ipsam cum eligendi necessitatibus! Labore laudantium voluptate, blanditiis accusantium
+                adipisci culpa aliquid sequi aspernatur provident!</p>
+            <br/>
+            <a href="#" class="btn btn-primary">Button</a>
+        </div>
+
+        <div class="col-lg-6">
+            <img src="../../resources/static/img/backpack1.png" th:src="@{/img/backpack1.png}" class="img-fluid"/>
+        </div>
+    </div>
+</div>
+
+<hr class="my-4"/>
+
+<!--- Fixed background -->
+<figure>
+    <div class="fixed-wrap">
+        <div id="fixed"></div>
+    </div>
+</figure>
+
+<!--- More Packs Section -->
+<button class="more" data-toggle="collapse" data-target="#morePacks">BackPacks</button>
+<div id="morePacks" class="collapse">
+    <div class="container-fluid padding">
+        <div class="row text-center">
+            <div class="col-sm-6 col-md-3">
+                <img class="packs" src="../../resources/static/img/backpack2.jpg" th:src="@{/img/backpack2.jpg}"/>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <img class="packs" src="../../resources/static/img/backpack3.png" th:src="@{/img/backpack3.jpg}"/>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <img class="packs" src="../../resources/static/img/backpack4.png" th:src="@{/img/backpack4.jpg}"/>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <img class="packs" src="../../resources/static/backpack5.png" th:src="@{/img/backpack5.jpg}"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--- See The Sights -->
+<div class="container-fluid padding">
+    <div class="row welcome text-center">
+        <div class="col-12">
+            <h1 class="display-4">See The Sights</h1>
+        </div>
+        <hr/>
+    </div>
+</div>
+
+<!--- Cards -->
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col-md-4">
+            <div class="card"><img src="../../resources/static/img/m2.png" th:src="@{/img/m2.png}" class="card-img-top" />
+                <div class="card-body">
+                    <h4 class="card-title">Backpack</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus, non
+                        iste quam nobis facilis magni id dolore consequatur, impedit eius asperiores. Perspiciatis esse,
+                        quaerat repellat necessitatibus reprehenderit, excepturi ab.</p>
+                    <a href="#" class="btn btn-outline-secondary">More Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card"><img src="../../resources/static/img/m3.png" th:src="@{/img/m3.png}" class="card-img-top" />
+                <div class="card-body">
+                    <h4 class="card-title">Backpack</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus, non
+                        iste quam nobis facilis magni id dolore consequatur, impedit eius asperiores. Perspiciatis esse,
+                        quaerat repellat necessitatibus reprehenderit, excepturi ab.</p>
+                    <a href="#" class="btn btn-outline-secondary">More Info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card"><img src="../../resources/static/img/m4.png" th:src="@{/img/m4.png}" class="card-img-top" />
+                <div class="card-body">
+                    <h4 class="card-title">Backpack</h4>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor accusamus, non
+                        iste quam nobis facilis magni id dolore consequatur, impedit eius asperiores. Perspiciatis esse,
+                        quaerat repellat necessitatibus reprehenderit, excepturi ab.</p>
+                    <a href="#" class="btn btn-outline-secondary">More Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--- Two Column Section -->
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col lg-7">
+            <h2>Information</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim quas accusamus, praesentium quo molestiae,
+                maxime suscipit nihil unde est maiores tempore quidem mollitia pariatur ab perferendis a reiciendis, id
+                repudiandae. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem voluptatum et debitis
+                nostrum corrupti, aspernatur impedit sequi. Beatae eveniet culpa id, facilis laudantium rem. Incidunt
+                laborum molestiae quod illo qui.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus porro provident quod accusantium
+                aliquam sunt ipsam cum eligendi necessitatibus! Labore laudantium voluptate, blanditiis accusantium
+                adipisci culpa aliquid sequi aspernatur provident!</p>
+        </div>
+
+        <div class="col-lg-5">
+            <img src="../../resources/static/img/mtn_logo_md.png" th:src="@{/img/mtn_logo_md.png}" class="img-fluid" />
+        </div>
+    </div>
+</div>
+
+<hr class="my-4"/>
+
+<!--- Connect -->
+<div class="container-fluid padding">
+    <div class="row text-center padding">
+        <div class="col-12">
+            <h2>Connect</h2>
+        </div>
+        <div class="col-12 social padding">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+
+<!--- Footer -->
+<footer th:replace="fragments::footer"></footer>
+
+</body>
+
+</html>
