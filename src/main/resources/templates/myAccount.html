@@ -56,8 +56,11 @@
                         <!-- Register Tab -->
                         <div class="tab-pane " id="register" role="tabpanel" aria-labelledby="register-tab" th:classappend="${classActiveRegister} ? ' show active'">
                             <h3>Register</h3>
+                            <div class="alert alert-danger" th:if="${emailExists}">An account with this email already exists.</div>
+                            <div class="alert alert-danger" th:if="${usernameExists}">An account with this username already exists.</div>
+                            <div class="alert alert-success" th:if="${emailSent}">An email has been sent to the address you registered.</div>
                             <hr/>
-                            <form>
+                            <form th:action="@{/register}" method="post">
                                 <div class="form-group">
                                     <label for="registerEmail">Email address</label>
                                     <input type="email" class="form-control" id="registerEmail"
@@ -80,8 +83,10 @@
                         </div>
 
                         <!-- Forgot Tab -->
-                        <div class="tab-pane " id="forgot" role="tabpanel" aria-labelledby="forgot-tab" th:classappend="${classActiveLogin} ? ' show active'">
+                        <div class="tab-pane " id="forgot" role="tabpanel" aria-labelledby="forgot-tab" th:classappend="${classActiveForgot} ? ' show active'">
                             <h3>Forgot Password</h3>
+                            <div class="alert alert-success" th:if="${emailSent}">An email has been sent to the address you registered.
+                            Please follow the link to continue your registration.</div>
                             <form>
                                 <div class="form-group">
                                     <label for="forgotEmail">Email address</label>
