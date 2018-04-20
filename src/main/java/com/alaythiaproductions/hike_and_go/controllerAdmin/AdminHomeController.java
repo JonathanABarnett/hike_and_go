@@ -13,4 +13,10 @@ public class AdminHomeController {
         model.addAttribute("title", "Admin Home");
         return "/admin/adminHome";
     }
+
+    @RequestMapping(value = "/supply")
+    public String viewSupply(Model model) {
+        model.addAttribute("title", "Supply List");
+        return "/admin/supplyList";
+    }
 }

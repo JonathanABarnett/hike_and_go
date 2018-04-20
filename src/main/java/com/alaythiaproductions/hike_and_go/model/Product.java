@@ -11,7 +11,7 @@ public class Product {
     private String name;
     private String color;
     private String category;
-    private String subCategory;
+    private String subCategory = "";
     private String company;
     @Column(columnDefinition = "text")
     private String description;
