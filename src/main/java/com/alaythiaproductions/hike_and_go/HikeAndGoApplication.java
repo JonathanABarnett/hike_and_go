@@ -26,6 +26,21 @@ public class HikeAndGoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        User admin = new User();
+        admin.setUsername("Admin");
+        admin.setFirstName("Admin");
+        admin.setLastName("Admin");
+        admin.setPassword(SecurityUtility.passwordEncoder().encode("123"));
+        admin.setEmail("admin@mail.com");
+        admin.setPhone("888-555-5555");
+        Set<UserRole> userRole = new HashSet<>();
+        Role role1 = new Role();
+        role1.setRoleId(1);
+        role1.setName("ROLE_ADMIN");
+        userRole.add(new UserRole(admin, role1));
+
+        userService.createUser(admin, userRole);
+
         User user = new User();
         user.setUsername("User");
         user.setFirstName("User");
@@ -35,11 +50,12 @@ public class HikeAndGoApplication implements CommandLineRunner {
         user.setPhone("888-555-5550");
         Set<UserRole> userRoles = new HashSet<>();
         Role role = new Role();
-        role.setRoleId(1);
+        role.setRoleId(2);
         role.setName("ROLE_USER");
         userRoles.add(new UserRole(user, role));
 
         userService.createUser(user, userRoles);
+
     }
 
 }

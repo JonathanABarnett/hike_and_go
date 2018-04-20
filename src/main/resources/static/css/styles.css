@@ -18,7 +18,18 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
 
+.bg-profile {
+    /* The image used */
+    background-image: url("../img/bg-profile.jpg");
+    /* Full height */
+    min-height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 5rem;
 }
 
 .navbar {

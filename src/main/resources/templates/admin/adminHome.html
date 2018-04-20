@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="adminFragments::head"></head>
+
+<body>
+
+<nav th:replace="adminFragments::navbar"></nav>
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-sm-8 col-md-6">
+        <img src="../../../resources/static/img/mtn_logo_md.png" th:src="@{/img/mtn_logo_md.png}" class="img-fluid"
+        style="max-width: 65%;"/>
+        <br/>
+        <h3 class="display-4">Admin Portal</h3>
+    </div>
+    <div class="col"></div>
+</div>
+
+
+<!--- Footer -->
+<footer th:replace="adminFragments::footer"></footer>
+
+</body>
+
+</html>

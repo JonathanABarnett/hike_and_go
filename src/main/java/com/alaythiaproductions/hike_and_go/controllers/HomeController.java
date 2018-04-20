@@ -3,6 +3,7 @@ package com.alaythiaproductions.hike_and_go.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Home Controller used for handling incoming requests to the index.html page
@@ -19,8 +20,10 @@ public class HomeController {
      */
     @GetMapping(value = "/")
     public String index(Model model) {
-        model.addAttribute("title", "Hike &amp; Go!");
+        model.addAttribute("title", "Hike & Go!");
         return "index";
     }
+
+
 
 }

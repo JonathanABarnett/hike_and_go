@@ -19,19 +19,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 
 @Controller
-public class MyAccountHomeController {
+public class MyAccountController {
 
     @Autowired
     private UserService userService;
@@ -58,7 +57,7 @@ public class MyAccountHomeController {
         return "myAccount";
     }
 
-    @GetMapping(value = "/login")
+    @RequestMapping(value = "/login")
     public String login(Model model) {
         model.addAttribute("title", "Login");
         model.addAttribute("classActiveLogin", true);
@@ -78,6 +77,7 @@ public class MyAccountHomeController {
     public String register(Model model, Locale locale, @RequestParam("token") String token) {
         model.addAttribute("title", "Register");
         model.addAttribute("classActiveRegister", true);
+        System.out.println("In Register GET");
 
         PasswordResetToken passwordResetToken = userService.getPasswordResetToken(token);
 
@@ -107,31 +107,69 @@ public class MyAccountHomeController {
         model.addAttribute("classActiveEdit", true);
         model.addAttribute("email", userEmail);
         model.addAttribute("username", username);
+        System.out.println("In Register POST " + username);
 
         if (userService.findByUsername(username) != null) {
             model.addAttribute("usernameExists", true);
             model.addAttribute("classActiveRegister", true);
+            System.out.println("Invalid Username");
             return "myAccount";
         }
 
         if (userService.findByEmail(userEmail) != null) {
             model.addAttribute("emailExists", true);
             model.addAttribute("classActiveRegister", true);
+            System.out.println("Invalid Email");
             return "myAccount";
         }
 
-        User user = new User();
-        user.setUsername(username);
-        user.setEmail(userEmail);
+        User user1 = new User();
+        user1.setUsername(username);
+        user1.setEmail(userEmail);
         String password = SecurityUtility.randomPassword();
         String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
-        user.setPassword(encryptedPassword);
+        user1.setPassword(encryptedPassword);
         Role role = new Role();
         role.setRoleId(1);
         role.setName("ROLE_USER");
         Set<UserRole> userRoles = new HashSet<>();
-        userRoles.add(new UserRole(user, role));
-        userService.createUser(user, userRoles);
+        userRoles.add(new UserRole(user1, role));
+        userService.createUser(user1, userRoles);
+
+        String token = UUID.randomUUID().toString();
+        userService.createPasswordResetTokenForUser(user1, token);
+
+        String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
+
+        SimpleMailMessage simpleMailMessage = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user1, password);
+
+        javaMailSender.send(simpleMailMessage);
+
+        model.addAttribute("emailSent", true);
+        model.addAttribute("classActiveRegister", true);
+
+        return "myAccount";
+    }
+
+    @RequestMapping(value = "/forgot")
+    public String forgot(Model model, HttpServletRequest request, @ModelAttribute("email") String email) {
+        model.addAttribute("title", "Forgot Password");
+        model.addAttribute("classActiveForgot", true);
+
+        User user = userService.findByEmail(email);
+
+        if (user == null) {
+            model.addAttribute("emailNotExist", true);
+            model.addAttribute("classActiveForgot", true);
+            System.out.println("Invalid Username");
+            return "myAccount";
+        }
+
+        String password = SecurityUtility.randomPassword();
+        String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+        user.setPassword(encryptedPassword);
+
+        userService.save(user);
 
         String token = UUID.randomUUID().toString();
         userService.createPasswordResetTokenForUser(user, token);
@@ -143,15 +181,8 @@ public class MyAccountHomeController {
         javaMailSender.send(simpleMailMessage);
 
         model.addAttribute("emailSent", true);
-        model.addAttribute("classActiveRegister", true);
-
-        return "myAccount";
-    }
-
-    @GetMapping(value = "/forgot")
-    public String forgot(Model model) {
-        model.addAttribute("title", "Forgot Password");
         model.addAttribute("classActiveForgot", true);
+
         return "myAccount";
     }
 }

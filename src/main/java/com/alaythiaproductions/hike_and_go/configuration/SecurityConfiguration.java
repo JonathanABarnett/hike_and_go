@@ -38,10 +38,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated()
-                .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN").anyRequest().authenticated()
                 .and()
-                .csrf().disable().formLogin().loginPage("/myAccount")
+                .csrf().disable()
+                .formLogin().loginPage("/login").permitAll()
                 .failureUrl("/login?error")
                 .defaultSuccessUrl("/")
                 .and()
@@ -50,8 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe()
                 .and()
-                .exceptionHandling()
-                .accessDeniedPage("/access-denied");
+                .exceptionHandling().accessDeniedPage("/403");
     }
 
     @Autowired

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title th:text="${title}">Hike &amp; Go</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet" />
+    <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
 <body>
 
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" th:fragment="navbar">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" th:fragment="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}"><img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive " aria-controls="navbarSupportedContent" aria-expanded="false " aria-label="Toggle navigation ">
+        <a class="navbar-brand" th:href="@{/}"><img src="../../resources/static/img/mtn_logo_xs.png"
+                                                    th:src="@{/img/mtn_logo_xs.png}"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive "
+                aria-controls="navbarSupportedContent" aria-expanded="false " aria-label="Toggle navigation ">
             <span class="navbar-toggler-icon "></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarResponsive ">
@@ -30,40 +32,41 @@
                 <li class="nav-item ">
                     <a class="nav-link " href="# ">Travel</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="# ">Connect</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " href="# ">About</a>
-                </li>
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Account
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        Add Inventory
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" sec:authorize="isAnonymous()" th:href="@{/myAccount}">Login</a>
-                        <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/myProfile}">Account</a>
-                        <div sec:authorize="isAuthenticated()" class="dropdown-divider"></div>
-                        <a class="dropdown-item" sec:authorize="isAuthenticated()" href="#">Shopping Cart</a>
-                        <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                        <a class="dropdown-item" href="/admin/supply/add">Add Supplies</a>
+                        <a class="dropdown-item" href="#">View Supplies</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Add Travel</a>
+                        <a class="dropdown-item" href="#">View Travel</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " th:href="@{/logout}">Logout</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Find Item" aria-label="Search" style="max-width: 150px" />
+                <input class="form-control mr-sm-2" type="search" placeholder="Find Item" aria-label="Search"
+                       style="max-width: 150px"/>
                 <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </div>
 </nav>
 
+
 <!--- Footer -->
 <footer th:fragment="footer">
     <div class="container-fluid padding">
         <div class="row text-center">
             <div class="col-md-4">
-                <img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}" />
-                <hr class="light" />
+                <img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}"/>
+                <hr class="light"/>
                 <a href="#">
                     <p>Phone Number</p>
                 </a>
@@ -72,24 +75,24 @@
                 <p>City, State Zip</p>
             </div>
             <div class="col-md-4">
-                <hr class="light" />
+                <hr class="light"/>
                 <h5>Our Hours</h5>
-                <hr class="light" />
+                <hr class="light"/>
                 <p>Monday</p>
                 <p>Monday</p>
                 <p>Monday</p>
             </div>
             <div class="col-md-4">
-                <hr class="light" />
+                <hr class="light"/>
                 <h5>More Info</h5>
-                <hr class="light" />
+                <hr class="light"/>
                 <p>Monday</p>
                 <p>Monday</p>
                 <p>Monday</p>
             </div>
             <div class="col-12">
-                <hr class="light-100" />
-                <h5>&copy; <a th:href="@{/admin/home}">AlaythiaProductions</a></h5>
+                <hr class="light-100"/>
+                <h5>&copy; AlaythiaProductions</h5>
             </div>
         </div>
     </div>

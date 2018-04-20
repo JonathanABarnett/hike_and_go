@@ -20,6 +20,8 @@ public class PasswordResetToken {
     private User user;
     private Date expirationDate;
 
+    public PasswordResetToken() {}
+
     public PasswordResetToken(final String token, final User user) {
         super();
 

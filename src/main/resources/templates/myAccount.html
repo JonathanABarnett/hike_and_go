@@ -37,7 +37,7 @@
                         <!-- Login Tab -->
                         <div class="tab-pane show " id="login" role="tabpanel" aria-labelledby="login-tab" th:classappend="${classActiveLogin} ? 'show active'">
                             <h3>Login</h3>
-                            <form>
+                            <form th:action="@{/login}" method="post">
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="loginUsername"
@@ -85,9 +85,9 @@
                         <!-- Forgot Tab -->
                         <div class="tab-pane " id="forgot" role="tabpanel" aria-labelledby="forgot-tab" th:classappend="${classActiveForgot} ? ' show active'">
                             <h3>Forgot Password</h3>
-                            <div class="alert alert-success" th:if="${emailSent}">An email has been sent to the address you registered.
-                            Please follow the link to continue your registration.</div>
-                            <form>
+                            <div class="alert alert-success" th:if="${emailSent}">An email has been sent to the address you registered. Please follow the link to reset your password.</div>
+                            <div class="alert alert-danger" th:if="${emailNotExist}">There is no record of this email. Please sign up for an account.</div>
+                            <form th:action="@{/forgot}" method="post">
                                 <div class="form-group">
                                     <label for="forgotEmail">Email address</label>
                                     <input type="email" class="form-control" id="forgotEmail"
