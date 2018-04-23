@@ -17,7 +17,9 @@
             </div>
             <div class="card-body">
 
-                <form th:action="@{admin/supply/add}" method="post">
+                <form th:action="@{/admin/supply/add}" method="post">
+
+                    <!-- Product Name -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="name" class="col-sm-4">* Product</label>
@@ -28,6 +30,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Main Color -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="color" class="col-sm-4">* Main Color</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="color"
+                                       placeholder="Enter Main Color" required="required" name="color"
+                                       th:value="${product.color}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="category" class="col-sm-4">* Category</label>
@@ -48,6 +64,7 @@
                         </div>
                     </div>
 
+                    <!-- Subcategory -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="subCategory" class="col-sm-4">Sub-Category</label>
@@ -89,6 +106,7 @@
                         </div>
                     </div>
 
+                    <!-- Company -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="company" class="col-sm-4">* Company</label>
@@ -100,6 +118,7 @@
                         </div>
                     </div>
 
+                    <!-- Company Website -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="companyWebsite" class="col-sm-4">* Company Website</label>
@@ -111,32 +130,36 @@
                         </div>
                     </div>
 
+                    <!-- Number in Stock -->
                     <div class="form-group">
                         <div class="form-row">
-                        <label for="numberOfStock" class="col-sm-4">* Number In Stock</label>
-                        <div class="col-sm-8">
-                            <input type="number" step="1" class="form-control" id="numberOfStock"
-                                   placeholder="Enter Number In Stock" required="required" name="numberOfStock"
-                                   th:value="${product.numberOfStock}"/>
-                        </div>
+                            <label for="numberOfStock" class="col-sm-4">* Number In Stock</label>
+                            <div class="col-sm-8">
+                                <input type="number" step="1" class="form-control" id="numberOfStock"
+                                       placeholder="Enter Number In Stock" required="required" name="numberOfStock"
+                                       th:value="${product.numberOfStock}"/>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- List Price -->
                     <div class="form-group">
                         <div class="form-row">
-                        <label for="listPrice" class="col-sm-4">* List Price</label>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">$</div>
+                            <label for="listPrice" class="col-sm-4">* List Price</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">$</div>
+                                    </div>
+                                    <input type="number" step="any" class="form-control" id="listPrice"
+                                           placeholder="Enter List Price" required="required" name="listPrice"
+                                           th:value="${product.listPrice}"/>
+                                </div>
                             </div>
-                            <input type="number" step="any" class="form-control" id="listPrice"
-                                   placeholder="Enter List Price" required="required" name="listPrice"
-                                   th:value="${product.listPrice}"/>
-                            </div>
-                        </div>
                         </div>
                     </div>
+
+                    <!-- Our Name -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="ourPrice" class="col-sm-4">* Our Price</label>
@@ -145,13 +168,14 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">$</div>
                                     </div>
-                                    <input type="number" step="0.1" class="form-control" id="ourPrice"
+                                    <input type="number" step="any" class="form-control" id="ourPrice"
                                            placeholder="Enter Our Price" required="required" name="ourPrice"
                                            th:value="${product.ourPrice}"/></div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Weight -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="weight" class="col-sm-4">* Weight</label>
@@ -167,6 +191,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Image URL -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="imgUrl" class="col-sm-4 col-form-label">* URL of Image</label>
@@ -174,10 +200,15 @@
                               <textarea class="form-control" id="imgUrl" rows="3"
                                         placeholder="Enter URL of image" required="required" name="imgUrl"
                                         th:value="${product.imgUrl}"></textarea>
+                                <small class="form-text text-muted">Add Image at <a href="https://imgbb.com/"
+                                                                                    target="_blank">imgbb.comm</a> to
+                                    get a URL for image.
+                                </small>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Description -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="description" class="col-sm-4 col-form-label">* Description</label>
@@ -189,6 +220,7 @@
                         </div>
                     </div>
 
+                    <!-- Active/Inactive -->
                     <div class="form-check">
                         <div class="form-row">
                             <label for="active" class="col-sm-4 ">* Status</label>
@@ -199,8 +231,8 @@
                                     Active </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                <input value="true" th:value="${product.active}" type="radio" name="active"
-                                       class="form-check-input"/><label class="form-check-label"> Inactive</label>
+                                    <input value="true" th:value="${product.active}" type="radio" name="active"
+                                           class="form-check-input"/><label class="form-check-label"> Inactive</label>
                                 </div>
                             </div>
                         </div>
