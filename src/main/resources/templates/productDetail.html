@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<nav th:replace="fragments::navbar"></nav>
+
+<div class="container" style="padding-top: 15px">
+<!--
+<div th:if="${emptyList}">
+    <h4 class="text text-danger">Oops, nothing was found. Try again.</h4>
+</div>
+
+<div th:if="${notEnoughStock}" class="alert alert-warning">
+    Oops, we don't have enough stock. Please update product quantity.
+</div>
+
+<div th:if="${addProductSuccess}" class="alert alert-success">
+    Added Book to  Shopping Cart!
+</div>
+-->
+<div class="row">
+<form th:action="@{/shoppingCart/addProduct}" method="post">
+    <input hidden="hidden" th:field="*{product.id}"/>
+    <div class="row">
+
+        <div class="col-md-3">
+            <a th:href="@{/listOfProducts}">Return to Products</a>
+            <br/>
+            <br/>
+            <img class="img-fluid" th:src="${product.imgUrl}"/>
+        </div>
+        <div class="col-md-9">
+            <h3 th:text="${product.name}">Product Name</h3>
+            <div class="row">
+                <div class="col-sm-4">
+                    <p><strong>Category: </strong><span th:text="${product.category}"></span></p>
+                    <p th:if="${product.subCategory != ''}"><strong>Subcategory: </strong><span
+                            th:text="${product.category}"></span></p>
+                    <p><strong>Color: </strong><span th:text="${product.color}"></span></p>
+                    <p><strong>Gender: </strong><span th:text="${product.gender}"></span></p>
+                    <p><strong>Company: </strong><a th:href="@{|${product.companyWebsite}|}" target="_blank"><span
+                            th:text="${product.company}"></span></a></p>
+                    <p><strong>Weight: </strong><span
+                            th:text="${#numbers.formatDecimal(product.weight, 0, 'COMMA', 1, 'POINT')}"></span> pounds</p>
+                    <p><strong>Size: </strong><span th:text="${product.size}"></span></p>
+                </div>
+                <div class="col-sm-8">
+                    <div class="card" style="margin-top: 0em">
+                        <div class="card-body">
+                            <div class="col">
+                                <h5 class="card-text">Our Price: <span style="color: green;">$<span
+                                        th:text="${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                                </h5>
+                                <p class="card-text">List Price: <span
+                                        style="text-decoration: line-through">$<span
+                                        th:text="${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                                </p>
+                                <p class="card-text">You Save: <span>$<span
+                                       style="color: blue" th:text="${#numbers.formatDecimal((product.listPrice - product.ourPrice), 0, 'COMMA', 2, 'POINT')}"></span>!</span>
+                                </p>
+                                <select name="qty">
+                                    <option th:each="qty : ${qtyList}" th:value="${qty}"
+                                            th:text="${qty}"></option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <br/>
+                                <h4 class="card-text" th:if="*{product.numberOfStock &gt;=10}"
+                                    style="color: green;">In Stock</h4>
+                                <h4 class="card-text"
+                                    th:if="*{product.numberOfStock &lt;10 and product.numberOfStock &gt;0}"
+                                    style="color: darkorange">Limited Supply Left <span>(<span
+                                        th:text="${product.numberOfStock}"></span> left)</span></h4>
+                                <h4 class="card-text" th:if="*{product.numberOfStock == 0}" style="color: darkred">
+                                    Unavailable</h4>
+                                <br/>
+                                <button class="btn btn-warning" type="submit"
+                                        style="color: black; border: 1px solid black; margin-top: 10px">
+                                    Add To Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <p th:utext="${product.description}"></p>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+
+<!--- Footer -->
+<footer th:replace="fragments::footer"></footer>
+
+</body>
+
+</html>

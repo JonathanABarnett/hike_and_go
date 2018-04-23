@@ -1,11 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title></title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
 
 <body>
 
+<nav th:replace="fragments::navbar"></nav>
+
+<div class="row">
+    <div class="col-sm-3"></div>
+
+    <div class="col-sm-9">
+        <div th:if="${emptyList}">
+            <h5>No results found. Please search again.</h5>
+        </div>
+        <div class="card" style="margin-top: 0em">
+            <div class="card-body">
+                <table class="table-hover" id="productList">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center">List of Supplies</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="product-item" th:each="product : ${productList}">
+                        <td>
+                            <div th:if="${product != null}">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <a th:href="@{/productDetail?id=} + ${product.id}">
+                                            <img th:src="${product.imgUrl}" class="img-fluid"/></a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <a th:href="@{/productDetail?id=} + ${product.id}"><h4
+                                                th:text="${product.name}"></h4></a>
+                                        <span><span
+                                            th:text="${product.category}"></span> / <span
+                                            th:text="${product.subCategory}">
+                                        </span></span>
+                                        <p style="margin-bottom: 0rem">
+                                            <small th:text="${product.color}"></small>
+                                        </p>
+                                        <span><span th:text="${#numbers.formatDecimal(product.weight, 0, 'COMMA', 1, 'POINT')}"></span>
+                                            lbs</span>
+                                        <br/>
+                                        <a th:href="@{|${product.companyWebsite}|}" target="_blank"><span
+                                                th:text="${product.company}"></span></a>
+                                        <br/>
+                                        <span style="font-size: large; color: green">$<span
+                                                th:text="${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                                        <span style="text-decoration: line-through"> $<span
+                                                th:text="${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                                        <br/>
+                                        <p th:utext="${#strings.abbreviate(product.description, 500)}">Lorem ipsum dolor
+                                            sit
+                                            amet,
+                                            consectetur adipisicing elit. Reprehenderit minus vero voluptas sunt ab
+                                            dolor
+                                            voluptate
+                                            quas, quibusdam iure. Reprehenderit laborum voluptatum, illum culpa facilis
+                                            magnam
+                                            minima, veritatis aut quas!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--- Footer -->
+<footer th:replace="fragments::footer"></footer>
+
 </body>
+
 </html>

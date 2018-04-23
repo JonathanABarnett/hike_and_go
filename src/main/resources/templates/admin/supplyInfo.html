@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<nav th:replace="fragments::navbar"></nav>
+
+<div class="container" style="padding-top: 15px">
+
+    <div class="container">
+        <div>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/admin/supply}">Go Back</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/admin/update?id=} + ${product.id}">Edit</a></li>
+            </ol>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <img th:src="${product.imgUrl}" class="img-fluid"/>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h3 th:text="${product.name}"></h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p><strong>Category: </strong><span th:text="${product.category}"></span></p>
+                        <p><strong>Subcategory: </strong><span th:text="${product.subCategory}"></span></p>
+                        <p><strong>Color: </strong><span th:text="${product.color}"></span></p>
+                        <p><strong>Gender: </strong><span th:text="${product.gender}"></span></p>
+                        <p><strong>Company: </strong><span th:text="${product.company}"></span></p>
+                        <p><strong>Company Website: </strong><a th:href="@{|${product.companyWebsite}|}" target="_blank">
+                            <span th:text="${product.companyWebsite}"></span></a></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><strong>Product Weight: </strong><span th:text="${product.weight}"></span></p>
+                        <p><strong>Product Size: </strong><span th:text="${product.size}"></span></p>
+                        <p><strong>List Price: </strong><span th:text="${product.listPrice}"></span></p>
+                        <p><strong>Our Price: </strong><span th:text="${product.ourPrice}"></span></p>
+                        <p><strong>Number in Stock: </strong><span th:text="${product.numberOfStock}"></span></p>
+                    </div>
+                </div>
+
+                <p><strong>Description: </strong><span th:utext="${product.description}"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--- Footer -->
+<footer th:replace="fragments::footer"></footer>
+
+</body>
+
+</html>

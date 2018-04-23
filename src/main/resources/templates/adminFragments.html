@@ -10,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 </head>
 
 <body>
@@ -27,7 +29,7 @@
         <div class="collapse navbar-collapse " id="navbarResponsive ">
             <ul class="navbar-nav ml-auto ">
                 <li class="nav-item ">
-                    <a class="nav-link " href="# ">Supplies</a>
+                    <a class="nav-link " th:href="@{/listOfProducts} ">Supplies</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link " href="# ">Travel</a>

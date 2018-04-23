@@ -12,12 +12,14 @@
     <div class="col"></div>
     <div class="col-xs-12 col-sm-10 col-md-8">
         <div class="card">
-            <div class="card-header text-center"><h4 class="display-4">Add Product</h4>
+            <div class="card-header text-center"><h4 class="display-4">Update Product</h4>
                 <p class="text-center text-muted">* Required Fields</p>
             </div>
             <div class="card-body">
 
-                <form th:action="@{/admin/supply/add}" method="post">
+                <form th:action="@{/admin/update}" method="post">
+
+                    <input hidden="hidden" name="id" th:value="${product.id}" />
 
                     <!-- Product Name -->
                     <div class="form-group">
@@ -283,7 +285,7 @@
                             <div class="col-sm-8">
                               <textarea class="form-control" id="imgUrl" rows="3"
                                         placeholder="Enter URL of image" required="required" name="imgUrl"
-                                        th:value="${product.imgUrl}"></textarea>
+                                        th:value="${product.imgUrl}" th:text="${product.imgUrl}"></textarea>
                                 <small class="form-text text-muted">Add Image at <a href="https://imgbb.com/"
                                                                                     target="_blank">imgbb.com</a>
                                     to
@@ -300,7 +302,7 @@
                             <div class="col-sm-8">
                               <textarea class="form-control" id="description" rows="5"
                                         placeholder="Enter Description" required="required" name="description"
-                                        th:value="${product.description}"></textarea>
+                                        th:value="${product.description}" th:text="${product.description}"></textarea>
                             </div>
                         </div>
                     </div>
@@ -325,7 +327,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Add Product</button>
+                    <button type="submit" class="btn btn-success">Update Product</button>
                     <a class="btn btn-warning" th:href="@{/admin/supply}">Cancel</a>
                 </form>
             </div>

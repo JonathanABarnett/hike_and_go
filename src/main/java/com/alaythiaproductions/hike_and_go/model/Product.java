@@ -21,6 +21,8 @@ public class Product {
     private double ourPrice;
     private boolean active = true;
     private double weight;
+    private String gender;
+    private String size;
     @Column(columnDefinition = "text")
     private String imgUrl;
 
@@ -126,6 +128,22 @@ public class Product {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getImgUrl() {
