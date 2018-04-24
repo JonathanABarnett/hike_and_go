@@ -16,7 +16,7 @@
         </div>
         <div class="card" style="margin-top: 0em">
             <div class="card-body">
-                <table class="table-hover" id="productList">
+                <table class="table-hover" id="productListTable">
                     <thead>
                     <tr>
                         <th scope="col" class="text-center">List of Supplies</th>
@@ -76,6 +76,18 @@
 
 <!--- Footer -->
 <footer th:replace="fragments::footer"></footer>
+
+<span th:replace="fragments::scripts"></span>
+
+<script>
+    $(document).ready(function(){
+        $("#productListTable").DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": false,
+            statesave: true
+        });
+    });
+</script>
 
 </body>
 

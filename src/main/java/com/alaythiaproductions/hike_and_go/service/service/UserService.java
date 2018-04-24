@@ -1,6 +1,8 @@
 package com.alaythiaproductions.hike_and_go.service.service;
 
 import com.alaythiaproductions.hike_and_go.model.User;
+import com.alaythiaproductions.hike_and_go.model.UserBilling;
+import com.alaythiaproductions.hike_and_go.model.UserPayment;
 import com.alaythiaproductions.hike_and_go.security.UserRole;
 import com.alaythiaproductions.hike_and_go.utility.PasswordResetToken;
 
@@ -19,4 +21,6 @@ public interface UserService {
     User createUser(User user, Set<UserRole> userRoles) throws Exception;
 
     User save(User user);
+
+    void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 }

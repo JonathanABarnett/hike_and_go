@@ -9,9 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
+    <link rel="stylesheet" href="../../resources/static/css/jquery.dataTables.css" th:href="@{/css/jquery.dataTables.css}" />
+    <link rel="stylesheet" href="../../resources/static/css/dataTables.bootstrap4.css" th:href="@{/css/dataTables.bootstrap4.css}" />
+    <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -99,6 +101,12 @@
         </div>
     </div>
 </footer>
+
+<!-- Scripts -->
+<span th:fragment="scripts">
+    <script th:src="@{/js/jquery.dataTables.js}"></script>
+    <script th:src="@{/js/dataTables.boostrap4.js}"></script>
+</span>
 
 </body>
 </html>

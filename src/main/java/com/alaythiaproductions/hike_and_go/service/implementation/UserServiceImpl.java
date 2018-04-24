@@ -1,6 +1,8 @@
 package com.alaythiaproductions.hike_and_go.service.implementation;
 
 import com.alaythiaproductions.hike_and_go.model.User;
+import com.alaythiaproductions.hike_and_go.model.UserBilling;
+import com.alaythiaproductions.hike_and_go.model.UserPayment;
 import com.alaythiaproductions.hike_and_go.repository.PasswordResetTokenRepository;
 import com.alaythiaproductions.hike_and_go.repository.RoleRepository;
 import com.alaythiaproductions.hike_and_go.repository.UserRepository;
@@ -70,5 +72,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+        userPayment.setUser(user);
+        userPayment.setUserBilling(userBilling);
+        userPayment.setDefaultPayment(true);
+        userBilling.setUserPayment(userPayment);
+        user.getUserPaymentList().add(userPayment);
+        save(user);
     }
 }
