@@ -1,12 +1,17 @@
 package com.alaythiaproductions.hike_and_go.controllers;
 
 import com.alaythiaproductions.hike_and_go.model.User;
+import com.alaythiaproductions.hike_and_go.model.UserBilling;
+import com.alaythiaproductions.hike_and_go.model.UserPayment;
 import com.alaythiaproductions.hike_and_go.model.UserShipping;
 import com.alaythiaproductions.hike_and_go.service.service.UserService;
 import com.alaythiaproductions.hike_and_go.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
@@ -37,7 +42,7 @@ public class ShippingAddressController {
         return "myProfile";
     }
 
-    @RequestMapping(value = "/addNewShippingAddress")
+    @GetMapping(value = "/addNewShippingAddress")
     public String addShippingAddress(Model model, Principal principal) {
         model.addAttribute("title", "Add Shipping Address");
 
@@ -64,5 +69,23 @@ public class ShippingAddressController {
 
         return "myProfile";
 
+    }
+
+    @PostMapping(value = "/addNewShippingAddress")
+    public String addNewshippingAddressPost(@ModelAttribute("userShipping") UserShipping userShipping,
+                                       Principal principal, Model model) {
+        model.addAttribute("title", "Add Shipping Address");
+
+        User user = userService.findByUsername(principal.getName());
+        userService.updateUserShipping(userShipping, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveShipping", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        return "myProfile";
     }
 }
