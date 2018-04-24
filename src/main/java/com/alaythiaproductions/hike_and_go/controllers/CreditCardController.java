@@ -80,6 +80,8 @@ public class CreditCardController {
     public String addNewCreditCardPost(@ModelAttribute("userPayment") UserPayment userPayment,
                                        @ModelAttribute("userBilling") UserBilling userBilling,
                                        Principal principal, Model model) {
+        model.addAttribute("title", "Add Credit Card");
+
         User user = userService.findByUsername(principal.getName());
         userService.updateUserBilling(userBilling, userPayment, user);
 
@@ -118,6 +120,46 @@ public class CreditCardController {
             model.addAttribute("classActiveBilling", true);
             model.addAttribute("listOfShippingAddresses", true);
         }
+
+        return "myProfile";
+    }
+
+    @RequestMapping(value = "/removeCreditCard")
+    public String removeCreditCard(@ModelAttribute("id") Long creditCardId, Principal principal, Model model) {
+        model.addAttribute("title", "Remove Credit Card");
+        User user = userService.findByUsername(principal.getName());
+        UserPayment userPayment = userPaymentService.findById(creditCardId);
+
+        if (user.getId() != userPayment.getUser().getId()) {
+            return "badRequestPage";
+        } else {
+            model.addAttribute("user", user);
+            userPaymentService.removeById(creditCardId);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+
+            model.addAttribute("listOfCreditCards", true);
+            model.addAttribute("classActiveBilling", true);
+            model.addAttribute("listOfShippingAddresses", true);
+        }
+
+        return "myProfile";
+    }
+
+    @PostMapping(value = "/setDefaultPayment")
+    public String setDefaultPayment(@ModelAttribute("defaultUserPaymentId") Long defaultPaymentId, Principal principal, Model model) {
+        model.addAttribute("title", "Default Credit Card");
+        User user = userService.findByUsername(principal.getName());
+        userService.setDefaultPayment(defaultPaymentId, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveBilling", true);
+        model.addAttribute("listOfShippingAddresses", true);
 
         return "myProfile";
     }

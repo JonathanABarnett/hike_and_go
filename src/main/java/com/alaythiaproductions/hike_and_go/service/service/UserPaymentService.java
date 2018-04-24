@@ -5,4 +5,6 @@ import com.alaythiaproductions.hike_and_go.model.UserPayment;
 public interface UserPaymentService {
 
    UserPayment findById(Long creditCardId);
+
+   void removeById(Long creditCardId);
 }

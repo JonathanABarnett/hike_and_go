@@ -5,6 +5,7 @@ import com.alaythiaproductions.hike_and_go.model.UserBilling;
 import com.alaythiaproductions.hike_and_go.model.UserPayment;
 import com.alaythiaproductions.hike_and_go.repository.PasswordResetTokenRepository;
 import com.alaythiaproductions.hike_and_go.repository.RoleRepository;
+import com.alaythiaproductions.hike_and_go.repository.UserPaymentRepository;
 import com.alaythiaproductions.hike_and_go.repository.UserRepository;
 import com.alaythiaproductions.hike_and_go.security.UserRole;
 import com.alaythiaproductions.hike_and_go.service.service.UserService;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -29,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RoleRepository roleRepository;
+
+    @Autowired
+    private UserPaymentRepository userPaymentRepository;
 
     @Override
     public PasswordResetToken getPasswordResetToken(final String token) {
@@ -82,5 +87,20 @@ public class UserServiceImpl implements UserService {
         userBilling.setUserPayment(userPayment);
         user.getUserPaymentList().add(userPayment);
         save(user);
+    }
+
+    @Override
+    public void setDefaultPayment(Long defaultPaymentId, User user) {
+        List<UserPayment> userPaymentList = userPaymentRepository.findAll();
+
+        for (UserPayment userPayment : userPaymentList) {
+            if (userPayment.getId() == defaultPaymentId) {
+                userPayment.setDefaultPayment(true);
+                userPaymentRepository.save(userPayment);
+            } else {
+                userPayment.setDefaultPayment(false);
+                userPaymentRepository.save(userPayment);
+            }
+        }
     }
 }
