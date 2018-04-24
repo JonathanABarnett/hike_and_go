@@ -5,6 +5,7 @@ import com.alaythiaproductions.hike_and_go.model.UserBilling;
 import com.alaythiaproductions.hike_and_go.model.UserPayment;
 import com.alaythiaproductions.hike_and_go.model.UserShipping;
 import com.alaythiaproductions.hike_and_go.service.service.UserService;
+import com.alaythiaproductions.hike_and_go.service.service.UserShippingService;
 import com.alaythiaproductions.hike_and_go.utility.USConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,9 @@ public class ShippingAddressController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserShippingService userShippingService;
 
     @RequestMapping(value = "/listOfShippingAddresses")
     public String listOfShippingAddresses(Model model, Principal principal) {
@@ -82,6 +86,74 @@ public class ShippingAddressController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveShipping", true);
+        model.addAttribute("listOfShippingAddresses", true);
+
+        return "myProfile";
+    }
+
+    @RequestMapping(value = "/updateUserShipping")
+    public String updateShippingAddress(@ModelAttribute("id") Long shippingAddressId, Principal principal, Model model) {
+        model.addAttribute("title", "Update Shipping Address");
+        User user = userService.findByUsername(principal.getName());
+        UserShipping userShipping = userShippingService.findById(shippingAddressId);
+
+        if (user.getId() != userShipping.getUser().getId()) {
+            return "badRequestPage";
+        } else {
+            model.addAttribute("user", user);
+
+            model.addAttribute("userShipping", userShipping);
+
+            List<String> stateList = USConstants.listOfUSStateCode;
+            Collections.sort(stateList);
+            model.addAttribute("stateList", stateList);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+
+            model.addAttribute("addNewShippingAddress", true);
+            model.addAttribute("classActiveShipping", true);
+            model.addAttribute("listOfCreditCards", true);
+        }
+
+        return "myProfile";
+    }
+
+    @RequestMapping(value = "/removeUserShipping")
+    public String removeShippingAddress(@ModelAttribute("id") Long userShippingId, Principal principal, Model model) {
+        model.addAttribute("title", "Remove Shipping Address");
+        User user = userService.findByUsername(principal.getName());
+        UserShipping userShipping = userShippingService.findById(userShippingId);
+
+        if (user.getId() != userShipping.getUser().getId()) {
+            return "badRequestPage";
+        } else {
+            model.addAttribute("user", user);
+            userShippingService.removeById(userShippingId);
+
+            model.addAttribute("userPaymentList", user.getUserPaymentList());
+            model.addAttribute("userShippingList", user.getUserShippingList());
+
+            model.addAttribute("listOfCreditCards", true);
+            model.addAttribute("classActiveShipping", true);
+            model.addAttribute("listOfShippingAddresses", true);
+        }
+
+        return "myProfile";
+    }
+
+    @PostMapping(value = "/setDefaultShippingAddress")
+    public String setDefaultShippingAddress(@ModelAttribute("defaultShippingAddressId") Long defaultShippingId, Principal principal, Model model) {
+        model.addAttribute("title", "Default Shipping Address");
+        User user = userService.findByUsername(principal.getName());
+        userService.setDefaultShipping(defaultShippingId, user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("userPaymentList", user.getUserPaymentList());
+        model.addAttribute("userShippingList", user.getUserShippingList());
+
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveShipping", true);
         model.addAttribute("listOfShippingAddresses", true);

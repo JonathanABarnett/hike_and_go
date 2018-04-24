@@ -4,10 +4,7 @@ import com.alaythiaproductions.hike_and_go.model.User;
 import com.alaythiaproductions.hike_and_go.model.UserBilling;
 import com.alaythiaproductions.hike_and_go.model.UserPayment;
 import com.alaythiaproductions.hike_and_go.model.UserShipping;
-import com.alaythiaproductions.hike_and_go.repository.PasswordResetTokenRepository;
-import com.alaythiaproductions.hike_and_go.repository.RoleRepository;
-import com.alaythiaproductions.hike_and_go.repository.UserPaymentRepository;
-import com.alaythiaproductions.hike_and_go.repository.UserRepository;
+import com.alaythiaproductions.hike_and_go.repository.*;
 import com.alaythiaproductions.hike_and_go.security.UserRole;
 import com.alaythiaproductions.hike_and_go.service.service.UserService;
 import com.alaythiaproductions.hike_and_go.utility.PasswordResetToken;
@@ -35,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserPaymentRepository userPaymentRepository;
+
+    @Autowired
+    private UserShippingRepository userShippingRepository;
 
     @Override
     public PasswordResetToken getPasswordResetToken(final String token) {
@@ -111,5 +111,20 @@ public class UserServiceImpl implements UserService {
         userShipping.setUserShippingDefault(true);
         user.getUserShippingList().add(userShipping);
         save(user);
+    }
+
+    @Override
+    public void setDefaultShipping(Long defaultShippingId, User user) {
+        List<UserShipping> userShippingList = userShippingRepository.findAll();
+
+        for (UserShipping userShipping : userShippingList) {
+            if (userShipping.getId() == defaultShippingId) {
+                userShipping.setUserShippingDefault(true);
+                userShippingRepository.save(userShipping);
+            } else {
+                userShipping.setUserShippingDefault(false);
+                userShippingRepository.save(userShipping);
+            }
+        }
     }
 }
