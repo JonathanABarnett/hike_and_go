@@ -1,6 +1,7 @@
 package com.alaythiaproductions.hike_and_go.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -25,6 +26,9 @@ public class Product {
     private String size;
     @Column(columnDefinition = "text")
     private String imgUrl;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductToCartItem> productToCartItemList;
 
     public Long getId() {
         return id;
@@ -152,5 +156,13 @@ public class Product {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public List<ProductToCartItem> getProductToCartItemList() {
+        return productToCartItemList;
+    }
+
+    public void setProductToCartItemList(List<ProductToCartItem> productToCartItemList) {
+        this.productToCartItemList = productToCartItemList;
     }
 }

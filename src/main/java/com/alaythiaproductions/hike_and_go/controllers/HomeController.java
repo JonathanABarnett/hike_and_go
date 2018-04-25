@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Home Controller used for handling incoming requests to the index.html page
+ * and static navigation links.
  */
 
 @Controller
@@ -24,6 +25,17 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping(value = "/about")
+    public String about(Model model) {
+        model.addAttribute("title", "About Us");
+        return "about";
+    }
+
+    @GetMapping(value = "/contactUs")
+    public String contactUs(Model model) {
+        model.addAttribute("title", "Contact Us");
+        return "contactUs";
+    }
 
 
 }

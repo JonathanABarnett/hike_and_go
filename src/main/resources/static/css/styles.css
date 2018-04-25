@@ -185,6 +185,15 @@ hr.light-100 {
 }
 
 
+.accordion .btn-link {
+    color: white;
+}
+
+.accordion .card {
+    background-color: #14cea3;
+}
+
+
 
 
 /*---Media Queries --*/

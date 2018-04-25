@@ -8,12 +8,12 @@
 <nav th:replace="fragments::navbar"></nav>
 
 <!--- Image Slider -->
-<div id="slides " class="carousel slide " data-ride="carousel ">
-    <ul class="carousel-indicators ">
+<div id="slides" class="carousel slide " data-ride="carousel">
+    <ol class="carousel-indicators">
         <li data-target="#slides " data-slide-to="0 " class="active "></li>
         <li data-target="#slides " data-slide-to="1 "></li>
         <li data-target="#slides " data-slide-to="2 "></li>
-    </ul>
+    </ol>
     <div class="carousel-inner ">
         <div class="carousel-item active ">
             <img src="../../resources/static/img/m4.png" th:src="@{/img/m4.png}" />
@@ -35,6 +35,14 @@
             <img src="../../resources/static/img/m6.png" th:src="@{/img/m6.png}" />
         </div>
     </div>
+    <a class="carousel-control-prev" href="#slides" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#slides" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
 <!--- Jumbotron -->
