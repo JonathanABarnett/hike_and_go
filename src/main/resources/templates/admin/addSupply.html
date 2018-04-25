@@ -17,7 +17,7 @@
             </div>
             <div class="card-body">
 
-                <form th:action="@{/admin/supply/add}" method="post">
+                <form th:action="@{/admin/supply/add}" method="post" th:object="${product}">
 
                     <!-- Product Name -->
                     <div class="form-group">
@@ -38,7 +38,7 @@
                             <div class="col-sm-8">
                                 <select class="form-control" th:value="${product.color}" id="color"
                                         name="color">
-                                    <option value="" disabled="disabled">Select Main Color</option>
+                                    <option value="" disabled="disabled" selected="selected">Select Main Color</option>
                                     <option value="Red" th:selected="(${product.color} == 'Red')">
                                         Red
                                     </option>
@@ -73,7 +73,7 @@
                             <div class="col-sm-8">
                                 <select class="form-control" th:value="${product.category}" id="category"
                                         name="category">
-                                    <option value="" disabled="disabled">Select Category</option>
+                                    <option value="" disabled="disabled" selected="selected">Select Category</option>
                                     <option value="Backpacks" th:selected="(${product.category} == 'Backpacks')">
                                         Backpacks
                                     </option>
@@ -94,7 +94,7 @@
                             <div class="col-sm-8">
                                 <select class="form-control" th:value="${product.subCategory}" id="subCategory"
                                         name="subCategory">
-                                    <option value="" disabled="disabled">Select Subcategory</option>
+                                    <option value="" disabled="disabled" selected="selected">Select Subcategory</option>
                                     <!-- <h5 class="dropdown-header">Backpacks</h5> -->
                                     <option value="" disabled="disabled">---Backpack---</option>
                                     <option value="Day Pack" th:selected="(${product.subCategory} == 'Day Pack')">
@@ -106,7 +106,7 @@
                                         Pack
                                     </option>
                                     <option value="Camping Pack"
-                                            th:selected="(${product.subCategory} == 'Campng Pack')">
+                                            th:selected="(${product.subCategory} == 'Camping Pack')">
                                         Camping Pack
                                     </option>
                                     <option value="" disabled="disabled">---Clothing---</option>
@@ -143,7 +143,7 @@
                             <div class="col-sm-8">
                                 <select class="form-control" th:value="${product.gender}" id="gender"
                                         name="gender">
-                                    <option value="" disabled="disabled">Select Gender</option>
+                                    <option value="" disabled="disabled" selected="selected">Select Gender</option>
                                     <option value="Men" th:selected="(${product.gender} == 'Men')">
                                         Men
                                     </option>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
 
-                    <!-- Our Name -->
+                    <!-- Our Price -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="ourPrice" class="col-sm-4">* Our Price</label>
@@ -246,14 +246,14 @@
                         </div>
                     </div>
 
-                    <!-- Gender -->
+                    <!-- Size -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="size" class="col-sm-4">* Size</label>
                             <div class="col-sm-8">
                                 <select class="form-control" th:value="${product.size}" id="size"
                                         name="size">
-                                    <option value="" disabled="disabled">Select Size</option>
+                                    <option value="" disabled="disabled" selected="selected">Select Size</option>
                                     <option value="Small" th:selected="(${product.size} == 'Small')">
                                         Small
                                     </option>
@@ -282,8 +282,8 @@
                             <label for="imgUrl" class="col-sm-4 col-form-label">* URL of Image</label>
                             <div class="col-sm-8">
                               <textarea class="form-control" id="imgUrl" rows="3"
-                                        placeholder="Enter URL of image" required="required" name="imgUrl"
-                                        th:value="${product.imgUrl}"></textarea>
+                                        placeholder="Enter URL of image" name="imgUrl"
+                                        th:value="${product.imgUrl}" th:utext="${product.imgUrl}"></textarea>
                                 <small class="form-text text-muted">Add Image at <a href="https://imgbb.com/"
                                                                                     target="_blank">imgbb.com</a>
                                     to
@@ -299,26 +299,26 @@
                             <label for="description" class="col-sm-4 col-form-label">* Description</label>
                             <div class="col-sm-8">
                               <textarea class="form-control" id="description" rows="5"
-                                        placeholder="Enter Description" required="required" name="description"
-                                        th:value="${product.description}"></textarea>
+                                        placeholder="Enter Description" name="description"
+                                        th:value="${product.description}" th:utext="${product.description}"></textarea>
                             </div>
                         </div>
                     </div>
 
                     <!-- Active/Inactive -->
-                    <div class="form-check">
+                    <div class="form-group">
                         <div class="form-row">
                             <label for="active" class="col-sm-4 ">* Status</label>
                             <div class="col-sm-8">
                                 <div class="form-check form-check-inline">
-                                    <input value="true" th:value="${product.active}" type="radio" name="active"
+                                    <input value="true" th:value="${product.active}" type="radio" name="active" id="active"
                                            class="form-check-input" checked="checked"/><label
-                                        class="form-check-label">
+                                        class="form-check-label" for="active">
                                     Active </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input value="true" th:value="${product.active}" type="radio" name="active"
-                                           class="form-check-input"/><label class="form-check-label">
+                                    <input value="true" th:value="${product.active}" type="radio" name="inactive" id="inactive"
+                                           class="form-check-input"/><label class="form-check-label" for="inactive">
                                     Inactive</label>
                                 </div>
                             </div>
@@ -327,6 +327,7 @@
 
                     <button type="submit" class="btn btn-success">Add Product</button>
                     <a class="btn btn-warning" th:href="@{/admin/supply}">Cancel</a>
+
                 </form>
             </div>
         </div>

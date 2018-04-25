@@ -8,7 +8,7 @@
 <nav th:replace="fragments::navbar"></nav>
 
 <div class="container" style="padding-top: 15px">
-<!--
+
 <div th:if="${emptyList}">
     <h4 class="text text-danger">Oops, nothing was found. Try again.</h4>
 </div>
@@ -20,7 +20,7 @@
 <div th:if="${addProductSuccess}" class="alert alert-success">
     Added Book to  Shopping Cart!
 </div>
--->
+
 <div class="row">
 <form th:action="@{/shoppingCart/addProduct}" method="post">
     <input hidden="hidden" th:field="*{product.id}"/>
@@ -37,8 +37,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <p><strong>Category: </strong><span th:text="${product.category}"></span></p>
-                    <p th:if="${product.subCategory != ''}"><strong>Subcategory: </strong><span
-                            th:text="${product.category}"></span></p>
+                    <p><strong>Subcategory: </strong><span th:text="${product.category}"></span></p>
                     <p><strong>Color: </strong><span th:text="${product.color}"></span></p>
                     <p><strong>Gender: </strong><span th:text="${product.gender}"></span></p>
                     <p><strong>Company: </strong><a th:href="@{|${product.companyWebsite}|}" target="_blank"><span

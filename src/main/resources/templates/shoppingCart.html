@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<nav th:replace="fragments::navbar"></nav>
+
+<div class="bg-profile">
+
+    <div class="row">
+        <div class="col"></div>
+
+        <div class="col-sm-12 col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <a class="btn btn-primary" th:href="@{/listOfProducts}">Continue Shopping</a>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a class="btn btn-primary" th:href="@{/checkout(id=${shoppingCart.id})}">Checkout</a>
+                        </div>
+                    </div>
+                    <br/>
+                    <div th:if="${notEnoughStock}" class="alert alert-warning">
+                        There is not enough stock. Please select a new amount.
+                    </div>
+                    <div th:if="${emptyCart}" class="alert alert-warning">
+                        Cart is empty. Please add something.
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4>Products</h4>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Price</h4>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Quantity</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div th:each="cartItem : ${cartItemList}">
+
+                        <form th:action="@{/shoppingCart/updateCartItem}" method="post">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-6">
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            <a th:href="@{/productDetail(id=${cartItem.product.id})}">
+                                                <img class="img-fluid" style="max-width: 100px"
+                                                     th:src="${cartItem.product.imgUrl}"/>
+                                            </a>
+                                        </div>
+                                        <div class="form-group col text-left">
+                                            <a th:href="@{/productDetail(id=${cartItem.product.id})}">
+                                                <h5 th:text="${cartItem.product.name}"></h5>
+                                            </a>
+                                            <p th:if="${cartItem.product.numberOfStock&gt;=10}" style="color: green;">In Stock</p>
+                                            <p th:if="${cartItem.product.numberOfStock&lt;10 and cartItem.product.numberOfStock&gt;0}" style="color: orange;">Only <span th:text="${cartItem.product.numberOfStock}"> Left in Stock</span></p>
+                                            <p th:if="${cartItem.product.numberOfStock==0}" style="color: darkred;">Out of Stock</p>
+                                            <a th:href="@{/shoppingCart/removeProduct?id=} + ${cartItem.id}">Delete All</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <h5 style="color: green; font-size: large">$<span th:text="${cartItem.product.ourPrice}" th:style="${cartItem.product.numberOfStock}==0? 'text-decoration: line-through' : ''"></span>
+                                    </h5>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input hidden="hidden" name="id" th:value="${cartItem.id}" />
+                                    <input th:id="${cartItem.id}" th:name="qty" th:disabled="${cartItem.product.numberOfStock==0}" class="form-control cartItemQty" th:value="${cartItem.qty}" />
+                                    <button style="display: none;" th:id="'update-item-' + ${cartItem.id}" type="submit" class="btn btn-warning btn-sm">Update
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+
+                        <hr/>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <h4 class="col-sm-12 text-right" th:unless="${emptyCart}"><strong style="font-size: large;">Total Price (
+                            <span th:text="${#lists.size(cartItemList)}"></span> items ):</strong>
+                            <span style="color: #db3208; font-size: large;">$<span th:text="${shoppingCart.grandTotal}"></span></span>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col"></div>
+    </div>
+
+</div>
+<!--- Footer -->
+
+<footer th:replace="fragments::footer"></footer>
+
+</body>
+
+</html>

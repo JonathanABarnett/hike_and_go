@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title th:text="${title}">Hike &amp; Go</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../resources/static/css/jquery.dataTables.css"
+          th:href="@{/css/jquery.dataTables.css}"/>
+    <link rel="stylesheet" href="../../resources/static/css/dataTables.bootstrap4.css"
+          th:href="@{/css/dataTables.bootstrap4.css}"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
-    <link rel="stylesheet" href="../../resources/static/css/jquery.dataTables.css" th:href="@{/css/jquery.dataTables.css}" />
-    <link rel="stylesheet" href="../../resources/static/css/dataTables.bootstrap4.css" th:href="@{/css/dataTables.bootstrap4.css}" />
-    <link href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 
 <body>
