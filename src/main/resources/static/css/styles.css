@@ -20,9 +20,44 @@ body {
     background-size: cover;
 }
 
+.bg2 {
+    /* The image used */
+    background-image: url("../img/m9.jpg");
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .bg-profile {
     /* The image used */
     background-image: url("../img/bg-profile.jpg");
+    /* Full height */
+    min-height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 5rem;
+}
+
+.bg-profile2 {
+    /* The image used */
+    background-image: url("../img/mtn_vert_4.jpg");
+    /* Full height */
+    min-height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 5rem;
+}
+
+.bg-profile3 {
+    /* The image used */
+    background-image: url("../img/mtn_vert_6.jpg");
     /* Full height */
     min-height: 100%;
     /* Center and scale the image nicely */
@@ -44,7 +79,7 @@ body {
     font-size: 1.1em !important;
 }
 
-.carousel-inner img {
+.carousel img {
     width: 100%;
     height: 100%;
 }

@@ -7,14 +7,14 @@
 
 <nav th:replace="fragments::navbar"></nav>
 
-<div class="bg-profile">
+<div class="bg-profile3">
 
     <div class="container">
         <div class="row" style="margin-top: 60px">
             <form th:action="@{/checkout}" method="post">
                 <div class="row">
                     <!-- Left Checkout -->
-                    <div class="col-md-4">
+                    <div class="col-sm-12 col-md-4">
                         <div class="card" style="margin-top: 0px">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-warning btn-block">Place your order</button>
@@ -57,7 +57,7 @@
                     </div>
 
                     <!-- Right Checkout -->
-                    <div class="col-md-8">
+                    <div class="col-sm-12 col-md-8">
                         <div th:if="${missingRequiredField}">
                             <h5 class="alert alert-warning">Please fill out all * required fields.</h5>
                         </div>
