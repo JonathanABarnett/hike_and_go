@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
@@ -74,6 +75,23 @@ public class ShoppingCartController {
         model.addAttribute("addProductSuccess", true);
 
         return "forward:/productDetail?id=" + product.getId();
+    }
+
+    @RequestMapping(value = "/updateCartItem")
+    public String updateShoppingCart(Model model, @ModelAttribute("id") Long cartItemId, @ModelAttribute("qty") int qty) {
+        CartItem cartItem = cartItemService.findById(cartItemId);
+        model.addAttribute("title", "Update " + cartItem.getProduct().getName());
+        cartItem.setQty(qty);
+        cartItemService.updateCartItem(cartItem);
+
+        return "forward:/shoppingCart/cart";
+    }
+
+    @RequestMapping(value = "/removeProduct")
+    public String removeProduct(@RequestParam("id") Long id) {
+        cartItemService.removeCartItem(cartItemService.findById(id));
+
+        return "forward:/shoppingCart/cart";
     }
 
 }
