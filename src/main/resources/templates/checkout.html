@@ -10,43 +10,45 @@
 <div class="bg-profile3">
 
     <div class="container">
-        <div class="row" style="margin-top: 60px">
+        <div class="row">
             <form th:action="@{/checkout}" method="post">
                 <div class="row">
+
                     <!-- Left Checkout -->
                     <div class="col-sm-12 col-md-4">
                         <div class="card" style="margin-top: 0px">
                             <div class="card-body">
                                 <button type="submit" class="btn btn-warning btn-block">Place your order</button>
-                                <p style="font-size: smaller">By placing your order you agree to Hike &amp; Go Co.'s <a href="#">policies</a>
+                                <p style="font-size: smaller">By placing your order you agree to Hike &amp; Go Co.'s <a
+                                        href="#">policies</a>
                                     and <a href="#">terms</a>.</p>
                                 <hr/>
                                 <h3>Order Summary</h3>
                                 <div class="row">
-                                    <div class="col-sm-7 text-left">
+                                    <div class="col-xs-12 col-md-7 text-left">
                                         Total Before Tax:
                                     </div>
-                                    <div class="col-sm-5 text-right">
+                                    <div class="col-xs-12 col-md-5 text-right">
                                         $<span th:text="${shoppingCart.grandTotal}"></span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-7 text-left" style="font-size: smaller;">
+                                    <div class="col-xs-12 col-md-7 text-left" style="font-size: smaller;">
                                         Tax:
                                     </div>
-                                    <div class="col-sm-5 text-right" style="font-size: smaller;">
+                                    <div class="col-xs-12 col-md-5 text-right" style="font-size: smaller;">
                                         $<span th:with="tax = ${shoppingCart.grandTotal * 0.08}"
                                                th:text="${#numbers.formatDecimal(tax, 0, 2)}"></span>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-7 text-left">
-                                        <h5 style="color: darkred;"><strong>Order Total: </strong></h5>
+                                    <div class="col-xs-12 col-md-7 text-left">
+                                        <h6 style="color: darkred;"><strong>Order Total: </strong></h6>
                                     </div>
-                                    <div class="col-sm-5 text-right">
-                                        <h5 style="color: darkred;">$<span
+                                    <div class="col-xs-12 col-md-5 text-right">
+                                        <h6 style="color: darkred;">$<span
                                                 th:with="total = ${shoppingCart.grandTotal + shoppingCart.grandTotal * 0.08}"
-                                                th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></h5>
+                                                th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></h6>
                                     </div>
                                 </div>
                                 <div class="card-footer text-muted text-left" style="font-size: smaller;">
@@ -68,7 +70,7 @@
                             <div class="card" style="margin-top: 0px">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
-                                        <a data-parent="#accordion" data-toggle="collapse"  href="#collapseOne">
+                                        <a data-parent="#accordion" data-toggle="collapse" href="#collapseOne">
                                             Shipping Address
                                         </a>
                                     </h5>
@@ -87,20 +89,21 @@
 
                                             <tr th:each="userShipping : ${userShippingList}">
                                                 <td th:text="${userShipping.userShippingStreet1} + ' ' + ${userShipping.userShippingStreet2} + ', ' + ${userShipping.userShippingCity} + ', ' + ${userShipping.userShippingState}"></td>
-                                                <td><a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">Use
-                                                    This
-                                                    Address</a></td>
+                                                <td>
+                                                    <a th:href="@{/setShippingAddress(userShippingId=${userShipping.id})}">Use
+                                                        This
+                                                        Address</a></td>
                                             </tr>
                                             </tbody>
                                         </table>
 
                                         <div class="form-row">
                                             <div class="col-sm-6">
-                                            <label for="shippingFirstName">* First Name</label>
-                                            <input type="text" class="form-control" id="shippingFirstName"
-                                                   placeholder="First Name" name="shippingAddressFirstName"
-                                                   required="required"
-                                                   th:value="${shippingAddress.shippingAddressFirstName}"/>
+                                                <label for="shippingFirstName">* First Name</label>
+                                                <input type="text" class="form-control" id="shippingFirstName"
+                                                       placeholder="First Name" name="shippingAddressFirstName"
+                                                       required="required"
+                                                       th:value="${shippingAddress.shippingAddressFirstName}"/>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="shippingLastName">* Last Name</label>
@@ -163,7 +166,8 @@
                                             </a>
                                         </h5>
                                     </div>
-                                    <div id="collapseTwo" class="collapse" th:classappend="${classActivePayment} ? 'show'"
+                                    <div id="collapseTwo" class="collapse"
+                                         th:classappend="${classActivePayment} ? 'show'"
                                          aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body">
                                             <table class="table" th:if="${not emptyPaymentList}">
@@ -176,9 +180,10 @@
                                                 <tbody>
                                                 <tr th:each="userPayment : ${userPaymentList}">
                                                     <td th:text="${userPayment.cardName}"></td>
-                                                    <td><a th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">Use
-                                                        This
-                                                        Payment</a></td>
+                                                    <td>
+                                                        <a th:href="@{/setPaymentMethod(userPaymentId=${userPayment.id})}">Use
+                                                            This
+                                                            Payment</a></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -188,7 +193,8 @@
                                                 <div class="col-sm-12">
                                                     <div class="form-row">
                                                         <div class="col-sm-4">
-                                                            <img th:src="@{/img/creditcards.png}" class="img-fluid"/><br/>
+                                                            <img th:src="@{/img/creditcards.png}"
+                                                                 class="img-fluid"/><br/>
                                                         </div>
                                                     </div>
                                                     <div class="form-row">
@@ -350,7 +356,8 @@
                                                         <label for="cvc">* CVC</label>
                                                         <div class="form-row">
                                                             <div class="col-sm-12">
-                                                                <input type="number" class="form-control" id="cvc" name="cvc"
+                                                                <input type="number" class="form-control" id="cvc"
+                                                                       name="cvc"
                                                                        required="required" th:value="${payment.cvc}"/>
                                                             </div>
                                                         </div>
@@ -371,15 +378,17 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-sm-6">
-                                                <label for="billingFirstName">* First Name</label>
-                                                <input type="text" class="form-control billingAddress" id="billingFirstName"
-                                                       placeholder="First Name"
-                                                       th:name="billingAddressFirstName" required="required"
-                                                       th:value="${billingAddress.billingAddressFirstName}"/>
+                                                    <label for="billingFirstName">* First Name</label>
+                                                    <input type="text" class="form-control billingAddress"
+                                                           id="billingFirstName"
+                                                           placeholder="First Name"
+                                                           th:name="billingAddressFirstName" required="required"
+                                                           th:value="${billingAddress.billingAddressFirstName}"/>
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <label for="billingLastName">* Last Name</label>
-                                                    <input type="text" class="form-control billingAddress" id="billingLastName"
+                                                    <input type="text" class="form-control billingAddress"
+                                                           id="billingLastName"
                                                            placeholder="Last Name"
                                                            th:name="billingAddressLastName" required="required"
                                                            th:value="${billingAddress.billingAddressLastName}"/>
@@ -387,22 +396,25 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="billingStreet1">* Street Address</label>
-                                                <input type="text" class="form-control billingAddress" id="billingStreet1"
+                                                <input type="text" class="form-control billingAddress"
+                                                       id="billingStreet1"
                                                        placeholder="Street Address 1"
                                                        th:name="billingAddressStreet1" required="required"
-                                                       th:value="${billingAddress.billingAddressStreet1}" />
-                                                <input type="text" class="form-control billingAddress" id="billingStreet2"
+                                                       th:value="${billingAddress.billingAddressStreet1}"/>
+                                                <input type="text" class="form-control billingAddress"
+                                                       id="billingStreet2"
                                                        placeholder="Street Address 2"
                                                        th:name="billingAddressStreet2"
-                                                       th:value="${billingAddress.billingAddressStreet2}" />
+                                                       th:value="${billingAddress.billingAddressStreet2}"/>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-4">
                                                     <label for="billingCity">City</label>
-                                                    <input type="text" class="form-control billingAddress" id="billingCity"
+                                                    <input type="text" class="form-control billingAddress"
+                                                           id="billingCity"
                                                            placeholder="City"
                                                            th:name="billingAddressCity" required="required"
-                                                           th:value="${billingAddress.billingAddressCity}" />
+                                                           th:value="${billingAddress.billingAddressCity}"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="billingState">State</label>
@@ -416,7 +428,8 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="billingZipCode">Zip Code</label>
-                                                    <input type="text" class="form-control billingAddress" id="billingZipCode"
+                                                    <input type="text" class="form-control billingAddress"
+                                                           id="billingZipCode"
                                                            placeholder="Zip Code"
                                                            th:name="billingAddressZipCode" required="required"
                                                            th:value="${billingAddress.billingAddressZipCode}"/>
@@ -438,24 +451,76 @@
                                             </a>
                                         </h5>
                                     </div>
-                                    <div id="collapseThree" class="collapse " th:classappend="${classActiveReview}? 'show'"
+                                    <div id="collapseThree" class="collapse "
+                                         th:classappend="${classActiveReview}? 'show'"
                                          aria-labelledby="headingThree"
                                          data-parent="#accordion">
                                         <div class="card-body">
-                                            <h4>Choose your shipping method: </h4>
+                                            <h5>Choose your shipping method: </h5>
                                             <div class="radio">
                                                 <label>
                                                     <input type="radio" name="shippingMethod" value="groundShipping"
-                                                           checked="checked"/>
+                                                           checked="checked" id="groundShipping"/>
                                                     Ground Shipping
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="shippingMethod" value="premiumShipping"/>
+                                                    <input type="radio" name="shippingMethod" value="premiumShipping" id="premiumShipping"/>
                                                     Premium Shipping
                                                 </label>
                                             </div>
+
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="7">Products</th>
+                                                    <th scope="col" colspan="2">Price</th>
+                                                    <th scope="col" colspan="3">Quantity</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="cartItem : ${cartItemList}">
+                                                    <td colspan="7">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <a th:href="@{/productDetail(id=${cartItem.product.id})}">
+                                                                    <img class="img-fluid" style="max-width: 100px"
+                                                                         th:src="${cartItem.product.imgUrl}"/>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a th:href="@{/productDetail(id=${cartItem.product.id})}">
+                                                                    <h6 th:text="${cartItem.product.name}"></h6>
+                                                                </a>
+                                                                <p th:if="${cartItem.product.numberOfStock&gt;=10}"
+                                                                   style="color: green;">In Stock</p>
+                                                                <p th:if="${cartItem.product.numberOfStock&lt;10 and cartItem.product.numberOfStock&gt;0}"
+                                                                   style="color: orange;">Only <span
+                                                                        th:text="${cartItem.product.numberOfStock}"> Left in Stock</span>
+                                                                </p>
+                                                                <p th:if="${cartItem.product.numberOfStock==0}"
+                                                                   style="color: darkred;">Out of Stock</p>
+                                                                <a th:href="@{/shoppingCart/removeItem?id=} + ${cartItem.id}">Delete
+                                                                    All</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <p style="color: green; font-size: large">$<span
+                                                                th:text="${cartItem.product.ourPrice}"
+                                                                th:style="${cartItem.product.numberOfStock}==0? 'text-decoration: line-through' : ''"></span>
+                                                        </p>
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <p style="font-size:large;" th:text="${cartItem.qty}"></p>
+
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!--
                                             <div class="row">
                                                 <div class="col-sm-7">
                                                     <h5>Product</h5>
@@ -466,9 +531,9 @@
                                                 <div class="col-sm-3">
                                                     <h5>Quantity</h5>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
-                                            <!-- Display Products from Cart -->
+                                            <!-- Display Products from Cart
                                             <div class="row" th:each="cartItem : ${cartItemList}">
 
                                                 <hr/>
@@ -510,19 +575,25 @@
                                                 <hr/>
                                             </div>
 
-
+-->
                                             <div class="row">
                                                 <h4 class="col-sm-12 text-right"><strong style="font-size: large;">Order
                                                     Total (
-                                                    <span th:text="${#lists.size(cartItemList)}"></span> items ):</strong>
-                                                    <span style="color: #db3208; font-size: large;">$<span
-                                                            th:text="${shoppingCart.grandTotal}"></span></span>
+                                                    <span th:text="${#lists.size(cartItemList)}"></span> items
+                                                    ):</strong>
+                                                    <span class="freeShipping" style="color: #db3208; font-size: large;">$<span
+                                                            th:with="total = ${shoppingCart.grandTotal + shoppingCart.grandTotal * 0.08}"
+                                                            th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></span>
+                                                    <span class="premiumShipping" style="color: #db3208; font-size: large;">$<span
+                                                            th:with="total = ${shoppingCart.grandTotal + shoppingCart.grandTotal * 0.1 + shoppingCart.grandTotal * 0.08}"
+                                                            th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></span>
                                                 </h4>
                                                 <br/>
                                                 <br/>
                                                 <button type="submit" class="btn btn-warning btn-block">Place your order
                                                 </button>
-                                                <p style="font-size: smaller">By placing your order you agree to Hike &amp; Go Co.'s <a href="#">policies</a>
+                                                <p style="font-size: smaller">By placing your order you agree to Hike
+                                                    &amp; Go Co.'s <a href="#">policies</a>
                                                     and <a href="#">terms</a>.</p>
                                             </div>
                                         </div>

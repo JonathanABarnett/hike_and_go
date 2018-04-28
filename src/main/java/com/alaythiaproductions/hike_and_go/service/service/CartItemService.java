@@ -4,6 +4,8 @@ import com.alaythiaproductions.hike_and_go.model.CartItem;
 import com.alaythiaproductions.hike_and_go.model.Product;
 import com.alaythiaproductions.hike_and_go.model.ShoppingCart;
 import com.alaythiaproductions.hike_and_go.model.User;
+import com.alaythiaproductions.hike_and_go.repository.CartItemRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -18,5 +20,8 @@ public interface CartItemService {
     CartItem findById(Long cartItemId);
 
     void removeCartItem(CartItem cartItem);
+
+    CartItem save(CartItem cartItem);
+
 
 }

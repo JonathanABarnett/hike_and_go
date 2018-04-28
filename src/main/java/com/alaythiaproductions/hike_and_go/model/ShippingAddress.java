@@ -17,9 +17,8 @@ public class ShippingAddress {
     private String shippingAddressZipCode;
     private boolean shippingAddressDefault;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne
+    private Order order;
 
     public Long getId() {
         return id;
@@ -93,11 +92,11 @@ public class ShippingAddress {
         this.shippingAddressDefault = shippingAddressDefault;
     }
 
-    public User getUser() {
-        return user;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

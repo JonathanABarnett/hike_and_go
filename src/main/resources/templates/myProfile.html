@@ -59,11 +59,13 @@
                         <!-- Edit User Info Tab -->
                         <div class="tab-pane show " id="edit" role="tabpanel" aria-labelledby="edit-tab"
                              th:classappend="${classActiveEdit} ? 'show active'">
-                            <h3 class="text-center">Edit</h3>
+                            <h3 class="text-center">Edit Profile</h3>
                             <hr/>
                             <form th:action="@{/updateUserInfo}" method="post">
-                                <input type="hidden" name="id" th:value="${user.id}"/>
+                               <input type="hidden" name="id" th:value="${user.id}"/>
                                 <div class="alert alert-success" th:if="${updateUserInfoSuccess}">User info updated.
+                                </div>
+                                <div class="alert alert-danger" th:if="${incorrectPassword}">Current password was entered incorrectly.
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
@@ -86,7 +88,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="currentPassword">Current Password</label>
-                                    <input type="text" class="form-control" id="currentPassword" name="currentPassword"
+                                    <input type="text" class="form-control" id="currentPassword" name="password"
                                            th:value="${currentPassword}" required="required"/>
                                     <small id="passwordHelp" class="form-text text-muted">Please enter your current
                                         password in order to change it.
@@ -107,8 +109,8 @@
                                     <input type="password" class="form-control" id="confirmPassword"
                                            required="required"/>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary">Login</button>
+                                <button type="submit" class="btn btn-primary" id="updateUserInfoButton">Update</button>
+                                <span id="checkPasswordMatch"></span>
                             </form>
                         </div>
 

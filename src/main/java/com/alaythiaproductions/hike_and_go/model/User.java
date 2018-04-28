@@ -25,16 +25,10 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//   @Size(min = 3, max = 15, message = "Username must be between 3 and 15 characters.")
     private String username;
-//   @Size(min = 3, message = "Password must be between 3 and 25 characters.")
-//  @NotEmpty
     private String password;
-//  @Email
     private String email;
-//   @NotEmpty
     private String firstName;
-//   @NotEmpty
     private String lastName;
     private String phone;
     private boolean enabled = true;
@@ -50,6 +44,10 @@ public class User implements UserDetails {
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private ShoppingCart shoppingCart;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;

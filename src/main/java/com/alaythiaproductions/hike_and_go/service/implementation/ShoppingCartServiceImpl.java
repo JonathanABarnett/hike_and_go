@@ -20,8 +20,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     @Autowired
     private CartItemService cartItemService;
 
-    @Autowired
-    private ShoppingCartService shoppingCartService;
 
     @Override
     public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart) {
@@ -41,5 +39,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCartRepository.save(shoppingCart);
 
         return shoppingCart;
+    }
+
+    @Override
+    public void clearShoppingCart(ShoppingCart shoppingCart) {
+        List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
+
+        for (CartItem cartItem : cartItemList) {
+            cartItem.setShoppingCart(null);
+            cartItemService.save(cartItem);
+        }
+
+        shoppingCart.setGrandTotal(new BigDecimal(0));
+
+        shoppingCartRepository.save(shoppingCart);
     }
 }

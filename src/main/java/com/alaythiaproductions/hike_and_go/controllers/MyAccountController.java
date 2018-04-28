@@ -96,7 +96,8 @@ public class MyAccountController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        //model.addAttribute("classActiveEdit", true);
+        model.addAttribute("user", user);
+        model.addAttribute("classActiveEdit", true);
 
         return "myProfile";
     }

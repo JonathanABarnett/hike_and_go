@@ -281,9 +281,9 @@
                         <div class="form-row">
                             <label for="imgUrl" class="col-sm-4 col-form-label">* URL of Image</label>
                             <div class="col-sm-8">
-                              <textarea class="form-control" id="imgUrl" rows="3"
+                              <input type="text" class="form-control" id="imgUrl"
                                         placeholder="Enter URL of image" name="imgUrl"
-                                        th:value="${product.imgUrl}" th:utext="${product.imgUrl}"></textarea>
+                                        th:value="${product.imgUrl}" required="required" th:text="${product.imgUrl}" />
                                 <small class="form-text text-muted">Add Image at <a href="https://imgbb.com/"
                                                                                     target="_blank">imgbb.com</a>
                                     to

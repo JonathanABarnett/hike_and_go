@@ -37,6 +37,7 @@
                         <!-- Login Tab -->
                         <div class="tab-pane show " id="login" role="tabpanel" aria-labelledby="login-tab" th:classappend="${classActiveLogin} ? 'show active'">
                             <h3>Login</h3>
+                            <div class="text text-danger" th:if="${param.error != null}">Incorrect Username or Password</div>
                             <form th:action="@{/login}" method="post">
                                 <div class="form-group">
                                     <label for="username">Username</label>
