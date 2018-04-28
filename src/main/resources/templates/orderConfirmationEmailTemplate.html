@@ -43,8 +43,7 @@
             <span th:text="${order.payment.holderFirstName}  + ' ' + ${order.payment.holderLastName}"></span><br/>
             <span th:text="${order.payment.type}"></span><br/>
             <span th:text="${order.payment.cardNumber}"></span><br/>
-            <span th:text="${order.payment.expiryMonth}"></span><br/>
-            <span th:text="${order.payment.expiryYear}"></span><br/>
+            <span th:text="${order.payment.expiryMonth} + ' ' + ${order.payment.expiryYear}"></span>
         </td>
         <td>
             <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressLastName}"></span><br/>
@@ -77,19 +76,34 @@
         <td class="highrow"></td>
         <td class="highrow"></td>
         <td class="highrow text-center"><strong>Subtotal</strong></td>
-        <td class="highrow text-right" data-th-text="${order.orderTotal}"></td>
+        
+        <td class="highrow text-right"  th:with="tax = ${order.orderTotal * 0.08}, subTotal = ${order.orderTotal - tax}"
+            th:text="${#numbers.formatDecimal(subTotal, 0, 2)}"></td>
     </tr>
     <tr>
         <td class="emptyrow"></td>
         <td class="emptyrow"></td>
         <td class="emptyrow text-center"><strong>Tax</strong></td>
-        <td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal * 0.08, 0, 2)}"></td>
+        <td class="emptyrow text-right" th:with="tax = ${order.orderTotal * 0.08}"
+        th:text="${#numbers.formatDecimal(tax, 0, 2)}"></td>
+    </tr>
+    <tr>
+        <td class="emptyrow"></td>
+        <td class="emptyrow"></td>
+        <td class="emptyrow text-center"><strong>Shipping</strong></td>
+        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'groundShipping'">Free</td>
+        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'premiumShipping'" th:with="shipping = ${order.orderTotal * 0.1}"
+            th:text="${#numbers.formatDecimal(shipping, 0, 2)}"></td>
     </tr>
     <tr>
         <td class="emptyrow"><i class="fas fa-barcode"></i></td>
         <td class="emptyrow"></td>
         <td class="emptyrow text-center"><strong>Total</strong></td>
-        <td class="emptyrow text-right" data-th-text="${#numbers.formatDecimal(order.orderTotal, 0, 2)}"></td>
+        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'groundShipping'" th:with="shipping = 0, total = ${order.orderTotal + shipping}"
+            th:text="${#numbers.formatDecimal(total, 0, 2)}"></td>
+        <td class="emptyrow text-right"
+            th:if="${order.shippingMethod} == 'premiumShipping'" th:with="shipping = ${order.orderTotal * 0.1}, total = ${order.orderTotal + shipping}"
+            th:text="${#numbers.formatDecimal(total, 0, 2)}"></td>
     </tr>
     </tbody>
 </table>

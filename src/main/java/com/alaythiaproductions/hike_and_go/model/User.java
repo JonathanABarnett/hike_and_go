@@ -45,6 +45,9 @@ public class User implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private ShoppingCart shoppingCart;
 
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -139,6 +142,14 @@ public class User implements UserDetails {
 
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
     }
 
     @Override

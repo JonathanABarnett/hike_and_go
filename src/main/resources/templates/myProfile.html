@@ -118,13 +118,123 @@
                         <div class="tab-pane " id="supply" role="tabpanel" aria-labelledby="suply-tab"
                              th:classappend="${classActiveSupplyOrders} ? ' show active'">
                             <h3 class="text-center">Supply Orders</h3>
-                            <hr/>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item active">
-                                    <a th:href="@{/listOfCreditCards}" th:style="${addNewCreditCard}? 'color: green'">Add
-                                        Credit Card</a>
-                                </li>
-                            </ol>
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <table class="table table-sm table-inverse">
+                                        <thead>
+                                        <tr>
+                                            <th>Order Date</th>
+                                            <th>Order Number</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="order : ${orderList}">
+                                            <td><a th:href="@{/orderDetail(id=${order.id})}"><span
+                                                    th:text="${order.orderDate}"></span></a></td>
+                                            <td data-th-text="${order.id}"></td>
+                                            <td data-th-text="${order.orderTotal}"></td>
+                                            <td data-th-text="${order.orderStatus}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Display Order Details -->
+                                    <div th:if="${displayOrderDetail}">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="text-center">
+                                                    <h2>Order Detail for Purchase #<span th:text="${order.id}"></span></h2>
+                                                </div>
+                                                <hr/>
+                                                <div class="row">
+                                                    <div class="card-group">
+                                                        <div class="card">
+                                                            <div class="card-title text-center"><strong>Billing Details</strong></div>
+                                                            <div class="card-body">
+                                                                <span th:text="${order.billingAddress.billingAddressFirstName} + ' ' + ${order.billingAddress.billingAddresslastName}"></span><br/>
+                                                                <span th:text="${order.billingAddress.billingAddressStreet1} + ' ' + ${order.billingAddress.billingAddressStreet2}"></span><br/>
+                                                                <span th:text="${order.billingAddress.billingAddressCity} + ', ' + ${order.billingAddress.billingAddressState} + ' ' + ${order.billingAddress.billingAddressZipCode}"></span><br/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-group">
+                                                        <div class="card">
+                                                            <div class="card-title text-center"><strong>Payment Information</strong></div>
+                                                            <div class="card-body">
+                                                                <span th:text="${order.payment.holderFirstName} + ' ' + ${order.payment.holderLastName}"> Card name</span><br/>
+                                                                <span th:text="${order.payment.cardNumber}"> Card Number</span><br/>
+                                                                <span>Exp. Date: </span><span th:text="${order.payment.expiryMonth} + ' ' + ${order.payment.expiryYear}"></span><br/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-group">
+                                                        <div class="card">
+                                                            <div class="card-title text-center"><strong>Shipping Details</strong></div>
+                                                            <div class="card-body">
+                                                                <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressFirstName}"></span><br/>
+                                                                <span th:text="${order.shippingAddress.shippingAddressStreet1} + ' ' + ${order.shippingAddress.shippingAddressStreet2}"></span><br/>
+                                                                <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipcode}"></span><br/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="card-header">
+                                                    <h3 class="text-center"><strong>Order Summary</strong></h3>
+                                                </div>
+                                                <div class="card-body">
+
+                                                    <table class="table table-dark table-hover">
+                                                        <thead>
+                                                        <tr>
+                                                            <td><strong>Item Name</strong></td>
+                                                            <th class="text-center"><strong>Item Price</strong></th>
+                                                            <th class="text-center"><strong>Item Quantity</strong></th>
+                                                            <th class="text-right"><strong>Total</strong></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="cartItem : ${cartItemList}">
+                                                            <td data-th-text="${cartItem.product.name}"></td>
+                                                            <td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
+                                                            <td class="text-center" data-th-text="${cartItem.qty}"></td>
+                                                            <td class="text-right" data-th-text="${cartItem.subTotal}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td class="highrow"></td>
+                                                            <td class="highrow text-center"><strong>Subtotal</strong></td>
+                                                            <td class="highrow text-right" th:text="${order.orderTotal}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="emptyrow"></td>
+                                                            <td class="emptyrow"></td>
+                                                            <td class="emptyrow text-center"><strong>Tax</strong></td>
+                                                            <td class="emptyrow text-right" th:text="${#numbers.formatDecimal(order.orderTotal * 0.08, 0, 2)}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="emptyrow"></td>
+                                                            <td class="emptyrow"></td>
+                                                            <td class="emptyrow text-center"><strong>Total</strong></td>
+                                                            <td class="emptyrow text-right" th:text="${#numbers.formatDecimal(order.orderTotal, 0, 2)}"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Travel Orders Tab -->

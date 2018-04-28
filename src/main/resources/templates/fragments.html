@@ -45,7 +45,7 @@
                         Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" sec:authorize="isAnonymous()" th:href="@{/myAccount}">Login</a>
+                        <a class="dropdown-item" sec:authorize="isAnonymous()" th:href="@{/myAccount}">Login/Sign Up</a>
                         <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a>
                         <div sec:authorize="isAuthenticated()" class="dropdown-divider"></div>
                         <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/shoppingCart/cart}">Shopping Cart</a>

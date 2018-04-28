@@ -134,7 +134,7 @@ public class CheckoutController {
         model.addAttribute("classActiveShipping", true);
 
         if (missingRequiredField) {
-            model.addAttribute("misingRequiredField", true);
+            model.addAttribute("missingRequiredField", true);
         }
 
         return "checkout";
@@ -279,6 +279,8 @@ public class CheckoutController {
             model.addAttribute("shippingAddress", shippingAddress);
 
             model.addAttribute("classActivePayment", true);
+
+            model.addAttribute("emptyPaymentList", false);
 
             if (userShippingList.size() == 0) {
                 model.addAttribute("emptyShippingList", true);
