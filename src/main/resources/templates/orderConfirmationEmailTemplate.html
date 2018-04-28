@@ -22,8 +22,9 @@
 <body>
 <p>Hello <span th:text="${user.firstName}"></span>, </p>
 <br/>
-<p>Thank you for shopping with Hike &amp; Go Co.! We hope your shopping experience was fun.</p>
-<p>Your order number is: <strong>#<span th:text="${order.id}"></span></strong>. Here is your order detail:</p>
+<h3>Thank you for shopping with Hike &amp; Go Co.!</h3>
+<p>We hope your shopping experience was fun.</p>
+<p>Your order number is: <strong>#<span th:text="${order.id}"></span></strong>.<br/> Here is your order detail:</p>
 <h2>Order Detail for purchase #<span th:text="${order.id}"></span></h2>
 <hr />
 
@@ -36,7 +37,7 @@
     <tr>
         <td><span th:text="${order.billingAddress.billingAddressFirstName} + ' ' + ${order.billingAddress.billingAddressLastName}"></span><br/>
             <span th:text="${order.billingAddress.billingAddressStreet1} + ' ' + ${order.billingAddress.billingAddressStreet2}"></span><br/>
-            <span th:text="${order.billingAddress.billingAddressCity} + ', ' + ${order.billingAddress.billingAddressState} + ' ' + ${order.billingAddress.billingAddressZipcode}"></span><br />
+            <span th:text="${order.billingAddress.billingAddressCity} + ', ' + ${order.billingAddress.billingAddressState} + ' ' + ${order.billingAddress.billingAddressZipCode}"></span><br />
         </td>
         <td>
             <span th:text="${order.payment.holderFirstName}  + ' ' + ${order.payment.holderLastName}"></span><br/>
@@ -48,7 +49,7 @@
         <td>
             <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressLastName}"></span><br/>
             <span th:text="${order.shippingAddress.shippingAddressStreet1} + ' ' + ${order.shippingAddress.shippingAddressStreet2}"></span><br/>
-            <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipcode}"></span><br />
+            <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipCode}"></span><br />
         </td>
     </tr>
 </table>
@@ -98,7 +99,7 @@
 <br/><br/><br/>
 <p>Hike &amp; Go Co.</p>
 <br/>
-<img th:src="@{/img/mtn_logo_xs.png}" />
+<img src="https://image.ibb.co/bZdjEH/mtn_logo_md.png" alt="mtn_logo_md" border="0"/>
 
 <br/>
 <br/>

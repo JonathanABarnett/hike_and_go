@@ -199,7 +199,7 @@ public class CheckoutController {
 
         model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
 
-        return "views/orderSubmitPage";
+        return "orderSubmitPage";
     }
 
     @RequestMapping(value = "/setShippingAddress")

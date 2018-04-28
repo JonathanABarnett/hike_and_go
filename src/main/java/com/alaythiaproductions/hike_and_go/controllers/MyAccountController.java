@@ -131,7 +131,7 @@ public class MyAccountController {
         String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
         user1.setPassword(encryptedPassword);
         Role role = new Role();
-        role.setRoleId(1);
+        role.setRoleId(2);
         role.setName("ROLE_USER");
         Set<UserRole> userRoles = new HashSet<>();
         userRoles.add(new UserRole(user1, role));
