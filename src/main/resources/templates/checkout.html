@@ -29,7 +29,7 @@
                                         Total Before Tax:
                                     </div>
                                     <div class="col-xs-12 col-md-5 text-right">
-                                        $<span th:text="${shoppingCart.grandTotal}"></span>
+                                        $<span th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 2)}"></span>
                                     </div>
                                 </div>
                                 <div class="row">

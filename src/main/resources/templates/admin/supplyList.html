@@ -14,13 +14,13 @@
         <tr>
             <th hidden="hidden"></th>
             <th scope="col">Delete</th>
-            <th>Image</th>
-            <th>Product</th>
-            <th>Category</th>
-            <th>Subcategory</th>
-            <th>List Price</th>
-            <th>Our Price</th>
-            <th>Delete</th>
+            <th scope="col">Image</th>
+            <th scope="col">Product</th>
+            <th scope="col">Category</th>
+            <th scope="col">Subcategory</th>
+            <th scope="col">List Price</th>
+            <th scope="col">Our Price</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
             <td hidden="hidden" name="id" th:value="${product.id}"></td>
             <td>
                 <input hidden="hidden" name="id" th:value="${product.id}" />
-                <input th:id="'selected' + ${product.id}" class="checkBox checkboxBook" type="checkbox" />
+                <input th:id="'selected' + ${product.id}" class="checkBox checkboxProduct" type="checkbox" />
             </td>
             <td><a th:href="@{/admin/supplyInfo(id=${product.id})}"><img class="img-fluid" th:src="${product.imgUrl}" style="max-width: 50px"/></a></td>
             <td th:text="${product.name}"><a th:href="@{/admin/supplyInfo(id=${product.id})}"></a></td>
@@ -38,13 +38,13 @@
             <td th:text="'$' + ${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}"></td>
             <td>
                 <input hidden="hidden" name="id" th:value="${product.id}" />
-                <button th:id="'oneProduct-' + ${product.id}" class="btn btn-danger delete-book" type="submit">Delete
+                <button th:id="'oneProduct-' + ${product.id}" class="btn btn-danger delete-product" type="submit" value="delete">Delete
                     <span><i class="fas fa-trash-alt"></i></span></button>
             </td>
         </tr>
-
         </tbody>
     </table>
+   <!-- <button th:id="deleteSelected" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 15px">Delete Selected</button> -->
 </div>
 
 <!--- Footer -->
@@ -57,7 +57,7 @@
        $('#productListTable').DataTable({
           "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
           "ordering": true,
-            statesave: true
+           statesave: true
        });
     });
 </script>

@@ -45,7 +45,7 @@ public class MyProfileController {
 
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.getOrderList());
+        model.addAttribute("orderList", user.getOrderList());
 //        model.addAttribute("travelList", user.getTravelList());
 
         UserShipping userShipping = new UserShipping();

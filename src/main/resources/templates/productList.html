@@ -8,7 +8,15 @@
 <nav th:replace="fragments::navbar"></nav>
 
 <div class="row">
-    <div class="col-sm-3"></div>
+    <div class="col-sm-3">
+        <h3><label for="category">Category</label></h3>
+        <div class="list-group" id="category">
+            <a th:href="@{/productList(category='all')}" th:classappend="${activeAll}? 'active'" class="list-group-item">All</a>
+            <a th:href="@{/searchByCategory(category='Backpacks')}" th:classappend="${activeBackpacks}? ' active'" class="list-group-item">Backpacks</a>
+            <a th:href="@{/searchByCategory(category='Clothing')}" th:classappend="${activeClothing}? ' active'" class="list-group-item">Clothing</a>
+            <a th:href="@{/searchByCategory(category='Camping Gear')}" th:classappend="${activeHistory}? ' active'" class="list-group-item">Camping Gear</a>
+        </div>
+    </div>
 
     <div class="col-sm-9">
         <div th:if="${emptyList}">

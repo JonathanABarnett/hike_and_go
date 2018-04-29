@@ -76,9 +76,8 @@
         <td class="highrow"></td>
         <td class="highrow"></td>
         <td class="highrow text-center"><strong>Subtotal</strong></td>
-        
-        <td class="highrow text-right"  th:with="tax = ${order.orderTotal * 0.08}, subTotal = ${order.orderTotal - tax}"
-            th:text="${#numbers.formatDecimal(subTotal, 0, 2)}"></td>
+        <td class="highrow text-right"
+            th:text="${#numbers.formatDecimal(order.orderTotal, 0, 2)}"></td>
     </tr>
     <tr>
         <td class="emptyrow"></td>

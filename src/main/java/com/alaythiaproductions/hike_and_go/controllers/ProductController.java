@@ -36,6 +36,7 @@ public class ProductController {
         }
 
         model.addAttribute("productList", productList);
+        model.addAttribute("activeAll", true);
         return "/productList";
     }
 

@@ -215,7 +215,7 @@
                         </div>
                     </div>
 
-                    <!-- Our Name -->
+                    <!-- Our Price -->
                     <div class="form-group">
                         <div class="form-row">
                             <label for="ourPrice" class="col-sm-4">* Our Price</label>
@@ -314,13 +314,13 @@
                             <div class="col-sm-8">
                                 <div class="form-check form-check-inline">
                                     <input value="true" th:value="${product.active}" type="radio" name="active"
-                                           class="form-check-input" checked="checked"/><label
+                                           class="form-check-input" checked="checked" th:checked="${product.active}"/><label
                                         class="form-check-label">
                                     Active </label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input value="true" th:value="${product.active}" type="radio" name="active"
-                                           class="form-check-input"/><label class="form-check-label">
+                                           class="form-check-input" th:checked="${!product.active}"/><label class="form-check-label">
                                     Inactive</label>
                                 </div>
                             </div>

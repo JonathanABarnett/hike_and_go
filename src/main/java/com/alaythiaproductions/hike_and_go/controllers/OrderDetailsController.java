@@ -56,11 +56,11 @@ public class OrderDetailsController {
             model.addAttribute("stateList", stateList);
 
             model.addAttribute("listOfShippingAddresses", true);
-            model.addAttribute("classActiveOrders", true);
+            model.addAttribute("classActiveSupplyOrders", true);
             model.addAttribute("displayOrderDetail", true);
             model.addAttribute("listOfCreditCards", true);
 
-            return "views/myProfile";
+            return "myProfile";
         }
     }
 

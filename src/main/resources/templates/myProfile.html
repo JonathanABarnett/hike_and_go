@@ -115,13 +115,13 @@
                         </div>
 
                         <!-- Supply Orders Tab -->
-                        <div class="tab-pane " id="supply" role="tabpanel" aria-labelledby="suply-tab"
+                        <div class="tab-pane " id="supply" role="tabpanel" aria-labelledby="supply-tab"
                              th:classappend="${classActiveSupplyOrders} ? ' show active'">
                             <h3 class="text-center">Supply Orders</h3>
                             <div class="card">
                                 <div class="card-body">
 
-                                    <table class="table table-sm table-inverse">
+                                    <table class="table table-sm">
                                         <thead>
                                         <tr>
                                             <th>Order Date</th>
@@ -134,9 +134,9 @@
                                         <tr th:each="order : ${orderList}">
                                             <td><a th:href="@{/orderDetail(id=${order.id})}"><span
                                                     th:text="${order.orderDate}"></span></a></td>
-                                            <td data-th-text="${order.id}"></td>
-                                            <td data-th-text="${order.orderTotal}"></td>
-                                            <td data-th-text="${order.orderStatus}"></td>
+                                            <td th:text="${order.id}"></td>
+                                            <td th:text="'$' + ${order.orderTotal}"></td>
+                                            <td th:text="${order.orderStatus}"></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -150,33 +150,33 @@
                                                 </div>
                                                 <hr/>
                                                 <div class="row">
-                                                    <div class="card-group">
+                                                    <div class="card-group col">
                                                         <div class="card">
                                                             <div class="card-title text-center"><strong>Billing Details</strong></div>
                                                             <div class="card-body">
-                                                                <span th:text="${order.billingAddress.billingAddressFirstName} + ' ' + ${order.billingAddress.billingAddresslastName}"></span><br/>
+                                                                <span th:text="${order.billingAddress.billingAddressFirstName} + ' ' + ${order.billingAddress.billingAddressLastName}"></span><br/>
                                                                 <span th:text="${order.billingAddress.billingAddressStreet1} + ' ' + ${order.billingAddress.billingAddressStreet2}"></span><br/>
                                                                 <span th:text="${order.billingAddress.billingAddressCity} + ', ' + ${order.billingAddress.billingAddressState} + ' ' + ${order.billingAddress.billingAddressZipCode}"></span><br/>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="card-group">
+                                                    <div class="card-group col">
                                                         <div class="card">
                                                             <div class="card-title text-center"><strong>Payment Information</strong></div>
                                                             <div class="card-body">
                                                                 <span th:text="${order.payment.holderFirstName} + ' ' + ${order.payment.holderLastName}"> Card name</span><br/>
                                                                 <span th:text="${order.payment.cardNumber}"> Card Number</span><br/>
-                                                                <span>Exp. Date: </span><span th:text="${order.payment.expiryMonth} + ' ' + ${order.payment.expiryYear}"></span><br/>
+                                                                <span th:text="${order.payment.expiryMonth} + ' / ' + ${order.payment.expiryYear}"></span><br/>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="card-group">
+                                                    <div class="card-group col">
                                                         <div class="card">
                                                             <div class="card-title text-center"><strong>Shipping Details</strong></div>
                                                             <div class="card-body">
-                                                                <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressFirstName}"></span><br/>
+                                                                <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressLastName}"></span><br/>
                                                                 <span th:text="${order.shippingAddress.shippingAddressStreet1} + ' ' + ${order.shippingAddress.shippingAddressStreet2}"></span><br/>
-                                                                <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipcode}"></span><br/>
+                                                                <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipCode}"></span><br/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -204,9 +204,9 @@
                                                         <tbody>
                                                         <tr th:each="cartItem : ${cartItemList}">
                                                             <td data-th-text="${cartItem.product.name}"></td>
-                                                            <td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
-                                                            <td class="text-center" data-th-text="${cartItem.qty}"></td>
-                                                            <td class="text-right" data-th-text="${cartItem.subTotal}"></td>
+                                                            <td class="text-center" th:text="${cartItem.product.ourPrice}"></td>
+                                                            <td class="text-center" th:text="${cartItem.qty}"></td>
+                                                            <td class="text-right" th:text="${cartItem.subTotal}"></td>
                                                         </tr>
                                                         <tr>
                                                             <td></td>
@@ -223,8 +223,17 @@
                                                         <tr>
                                                             <td class="emptyrow"></td>
                                                             <td class="emptyrow"></td>
+                                                            <td class="emptyrow text-center"><strong>Shipping</strong></td>
+                                                            <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'groundShipping'">Free</td>
+                                                            <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'premiumShipping'" th:with="shipping = ${order.orderTotal * 0.1}"
+                                                                th:text="${#numbers.formatDecimal(shipping, 0, 2)}"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="emptyrow"></td>
+                                                            <td class="emptyrow"></td>
                                                             <td class="emptyrow text-center"><strong>Total</strong></td>
-                                                            <td class="emptyrow text-right" th:text="${#numbers.formatDecimal(order.orderTotal, 0, 2)}"></td>
+                                                            <td class="emptyrow text-right" th:with="tax = ${order.orderTotal * 0.08}, total = ${order.orderTotal + tax}"
+                                                                th:text="${#numbers.formatDecimal(total, 0, 2)}"></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>

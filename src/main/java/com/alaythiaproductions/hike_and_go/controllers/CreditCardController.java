@@ -36,7 +36,7 @@ public class CreditCardController {
 
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.getOrderList());
+        model.addAttribute("orderList", user.getOrderList());
 //        model.addAttribute("travelList", user.getTravelList());
 
         model.addAttribute("listOfCreditCards", true);
@@ -69,7 +69,7 @@ public class CreditCardController {
 
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.getOrderList());
+        model.addAttribute("orderList", user.getOrderList());
 //        model.addAttribute("travelList", user.getTravelList());
 
         return "myProfile";

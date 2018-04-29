@@ -36,7 +36,7 @@ public class ShippingAddressController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.getOrderList());
+        model.addAttribute("orderList", user.getOrderList());
 //        model.addAttribute("travelList", user.getTravelList());
 
         model.addAttribute("listOfShippingAddresses", true);
@@ -68,7 +68,7 @@ public class ShippingAddressController {
 
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
-//        model.addAttribute("orderList", user.getOrderList());
+        model.addAttribute("orderList", user.getOrderList());
 //        model.addAttribute("travelList", user.getTravelList());
 
         return "myProfile";

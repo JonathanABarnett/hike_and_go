@@ -11,4 +11,10 @@ public interface ProductService {
     List<Product> findAll();
 
     Product findOne(Long id);
+
+    void removeOne(Long id);
+
+    List<Product> findByCategory(String category);
+
+    List<Product> blurrySearch(String keyword);
 }
