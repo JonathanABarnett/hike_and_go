@@ -32,12 +32,12 @@ public class ProductController {
 
         if (productList.isEmpty()) {
             model.addAttribute("emptyList", true);
-            return "/productList";
+            return "productList";
         }
 
         model.addAttribute("productList", productList);
         model.addAttribute("activeAll", true);
-        return "/productList";
+        return "productList";
     }
 
     @RequestMapping(value = "/productDetail")
