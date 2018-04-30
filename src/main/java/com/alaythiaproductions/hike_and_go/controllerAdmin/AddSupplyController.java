@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping(value = "/admin/supply")
+@RequestMapping(value = "/admin")
 public class AddSupplyController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value = "/add")
+    @GetMapping(value = "/supply/add")
     public String addSupply(Model model) {
         model.addAttribute("title", "Add Product");
         Product product = new Product();
@@ -27,7 +27,7 @@ public class AddSupplyController {
         return "addSupply";
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/supply/add")
     public String addSupplyPost(Model model, @ModelAttribute("product") Product product, HttpServletRequest request) {
         model.addAttribute("title", "Add Product");
 
