@@ -24,6 +24,6 @@ public class ResourceController {
             productService.removeOne(Long.parseLong(productId));
         }
 
-        return "delete success";
+        return "supplyList";
     }
 }

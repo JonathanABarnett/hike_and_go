@@ -26,6 +26,6 @@ public class DeleteSupplyController {
         List<Product> productList = productService.findAll();
         model.addAttribute("productList", productList);
 
-        return "redirect:/admin/supply";
+        return "redirect:supply";
     }
 }

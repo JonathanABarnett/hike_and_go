@@ -1,7 +1,6 @@
 package com.alaythiaproductions.hike_and_go.controllerAdmin;
 
 import com.alaythiaproductions.hike_and_go.model.Product;
-import com.alaythiaproductions.hike_and_go.repository.ProductRepository;
 import com.alaythiaproductions.hike_and_go.service.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +24,7 @@ public class AddSupplyController {
         model.addAttribute("title", "Add Product");
         Product product = new Product();
         model.addAttribute("product", product);
-        return "admin/addSupply";
+        return "addSupply";
     }
 
     @PostMapping(value = "/add")
@@ -33,7 +32,7 @@ public class AddSupplyController {
         model.addAttribute("title", "Add Product");
 
         productService.save(product);
-        return "redirect:/admin/supply";
+        return "redirect:supply";
     }
 
 

@@ -19,7 +19,7 @@ public class AdminHomeController {
     @RequestMapping(value = "/home")
     public String adminLogin(Model model) {
         model.addAttribute("title", "Admin Home");
-        return "/admin/adminHome";
+        return "adminHome";
     }
 
     @RequestMapping(value = "/supply")
@@ -27,6 +27,6 @@ public class AdminHomeController {
         model.addAttribute("title", "Supply List");
         List<Product> productList = productService.findAll();
         model.addAttribute("productList", productList);
-        return "/admin/supplyList";
+        return "supplyList";
     }
 }

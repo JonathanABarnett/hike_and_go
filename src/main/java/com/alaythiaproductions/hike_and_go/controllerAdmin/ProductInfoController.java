@@ -20,6 +20,6 @@ public class ProductInfoController {
         Product product = productService.findOne(id);
         model.addAttribute("title", product.getName());
         model.addAttribute("product", product);
-        return "admin/supplyInfo";
+        return "supplyInfo";
     }
 }

@@ -20,13 +20,13 @@ public class UpdateSupplyController {
     public String updateSupply(@RequestParam("id") Long id, Model model) {
         Product product = productService.findOne(id);
         model.addAttribute("product", product);
-        return "admin/updateSupply";
+        return "updateSupply";
     }
 
     @PostMapping(value = "/update")
     public String updateSupplyPost(@ModelAttribute("product") Product product, Model model, HttpServletRequest request) {
         productService.save(product);
         model.addAttribute("title", product.getName());
-        return "redirect:/admin/supplyInfo?id=" + product.getId();
+        return "redirect:supplyInfo?id=" + product.getId();
     }
 }

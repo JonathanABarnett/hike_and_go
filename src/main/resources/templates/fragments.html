@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title th:text="${title}">Hike &amp; Go</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="stylesheet" href="../../resources/static/css/jquery.dataTables.css" th:href="@{/css/jquery.dataTables.css}" />
-    <link rel="stylesheet" href="../../resources/static/css/dataTables.bootstrap4.css" th:href="@{/css/dataTables.bootstrap4.css}" />
-   <link rel="stylesheet" href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" href="../../resources/static/css/jquery.dataTables.css"
+          th:href="@{/css/jquery.dataTables.css}"/>
+    <link rel="stylesheet" href="../../resources/static/css/dataTables.bootstrap4.css"
+          th:href="@{/css/dataTables.bootstrap4.css}"/>
+    <link rel="stylesheet" href="../../resources/static/css/styles.css" th:href="@{/css/styles.css}"/>
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
 </head>
 
@@ -22,8 +28,10 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" th:fragment="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}"><img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}"/></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive " aria-controls="navbarSupportedContent" aria-expanded="false " aria-label="Toggle navigation ">
+        <a class="navbar-brand" th:href="@{/}"><img src="../../resources/static/img/mtn_logo_xs.png"
+                                                    th:src="@{/img/mtn_logo_xs.png}"/></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive "
+                aria-controls="navbarSupportedContent" aria-expanded="false " aria-label="Toggle navigation ">
             <span class="navbar-toggler-icon "></span>
         </button>
         <div class="collapse navbar-collapse " id="navbarResponsive ">
@@ -41,20 +49,24 @@
                     <a class="nav-link " th:href="@{/about}">About</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
                         Account
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" sec:authorize="isAnonymous()" th:href="@{/myAccount}">Login/Sign Up</a>
-                        <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a>
+                        <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My
+                            Account</a>
                         <div sec:authorize="isAuthenticated()" class="dropdown-divider"></div>
-                        <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/shoppingCart/cart}">Shopping Cart</a>
+                        <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/shoppingCart/cart}">Shopping
+                            Cart</a>
                         <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" th:action="@{/searchProduct}" method="post">
-                <input class="form-control mr-sm-2" type="text" placeholder="Find Item" name="keyword" aria-label="Search" style="max-width: 150px" />
+                <input class="form-control mr-sm-2" type="text" placeholder="Find Item" name="keyword"
+                       aria-label="Search" style="max-width: 150px"/>
                 <button class="btn btn-outline my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -66,32 +78,32 @@
     <div class="container-fluid padding">
         <div class="row text-center">
             <div class="col-md-4">
-                <img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}" />
-                <hr class="light" />
+                <img src="../../resources/static/img/mtn_logo_xs.png" th:src="@{/img/mtn_logo_xs.png}"/>
+                <hr class="light"/>
+                <p>888-888-8888</p>
                 <a href="#">
-                    <p>888-888-8888</p>
+                    <p>hike.and.go.co@gmail.com</p>
                 </a>
-                <p>hike.and.go.co@gmail.com</p>
                 <p>55 Park St.</p>
                 <p>Springfield, IL 62704</p>
             </div>
             <div class="col-md-4">
-                <hr class="light" />
+                <hr class="light"/>
                 <h5>Our Hours</h5>
-                <hr class="light" />
+                <hr class="light"/>
                 <p>Mon-Fri 8AM-7PM</p>
                 <p>Sat 7AM-7PM</p>
                 <p>Sun 10AM-6PM</p>
             </div>
             <div class="col-md-4">
-                <hr class="light" />
+                <hr class="light"/>
                 <h5>More Info</h5>
-                <hr class="light" />
+                <hr class="light"/>
                 <p>Github</p>
                 <p>Linked-In</p>
             </div>
             <div class="col-12">
-                <hr class="light-100" />
+                <hr class="light-100"/>
                 <h5>&copy; Jonathan Barnett</h5>
                 <p style="font-size: smaller;"><a th:href="@{/admin/home}">Admin Login</a></p>
             </div>
