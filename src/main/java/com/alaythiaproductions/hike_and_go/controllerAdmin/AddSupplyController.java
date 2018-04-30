@@ -32,7 +32,7 @@ public class AddSupplyController {
         model.addAttribute("title", "Add Product");
 
         productService.save(product);
-        return "redirect:supply";
+        return "redirect:/admin/supply";
     }
 
 

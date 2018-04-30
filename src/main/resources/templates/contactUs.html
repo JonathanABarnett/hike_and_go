@@ -7,13 +7,56 @@
 
 <nav th:replace="fragments::navbar"></nav>
 
-<div class="bg2">
+<div class="bg-profile3">
 
     <div class="row">
         <div class="col"></div>
 
         <div class="col-sm-12 col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Contact Us About Anything!</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/contactUs}" method="post">
 
+                        <div class="alert alert-success" th:if="${contactSentSuccess}">Email sent! Thanks for contacting
+                            us.
+                        </div>
+                        <div class="alert alert-danger" th:if="${contactSentFailure}">Error. Please sent correct fields.
+                        </div>
+                        <div class="form-group" sec:authorize="isAnonymous()">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="firstName">*First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName"
+                                           required="required"/>
+                                </div>
+                                <div class="col">
+                                    <label for="lastName">*Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName"
+                                           required="required"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailResponse">Email</label>
+                            <input type="email" class="form-control" id="emailResponse" name="emailResponse"/>
+                            <small class="form-text text-muted">If you would like us to respond to you.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">*Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                   required="required"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">*Message Content</label>
+                            <textarea class="form-control" id="message" rows="7" name="message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Contact</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div class="col"></div>

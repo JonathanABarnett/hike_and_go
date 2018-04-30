@@ -152,6 +152,7 @@ body {
 
 .packs {
     max-width: 100%;
+    max-height: 215px;
 }
 
 .social a {

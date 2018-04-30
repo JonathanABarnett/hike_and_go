@@ -148,17 +148,9 @@
 <div id="morePacks" class="collapse">
     <div class="container-fluid padding">
         <div class="row text-center">
-            <div class="col-sm-6 col-md-3">
-                <img class="packs" src="../../resources/static/img/backpack2.jpg" th:src="@{/img/backpack2.jpg}"/>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <img class="packs" src="../../resources/static/img/backpack3.png" th:src="@{/img/backpack3.png}"/>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <img class="packs" src="../../resources/static/img/backpack4.png" th:src="@{/img/backpack4.png}"/>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <img class="packs" src="../../resources/static/backpack5.png" th:src="@{/img/backpack5.png}"/>
+            <div class="col-sm-6 col-md-3" th:each="special : ${specialList}">
+                <a th:href="@{/productDetail?id=} + ${special.id}"><img class="packs img-fluid"  th:src="${special.imgUrl}"/></a>
+                <h5 class="text-center" th:text="${special.name}"></h5>
             </div>
         </div>
     </div>
