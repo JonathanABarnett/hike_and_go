@@ -41,7 +41,7 @@ public class HomeController {
 
 
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             Integer id = random.nextInt(productList.size() + 1);
             Long longId = Long.valueOf(id);
             Product backpack = productService.findOne(longId);

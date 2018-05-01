@@ -39,6 +39,7 @@ public class ContactUsController {
 
         String subject = request.getParameter("subject");
         String message = request.getParameter("message");
+        String orderNumber = request.getParameter("orderNumber");
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setFrom("hike.and.go.co@gmail.com");
@@ -50,6 +51,7 @@ public class ContactUsController {
         String body = "From:  " + customer + "\n\n"
                 + "Email: " + emailResponse + "\n\n"
                 + "Concerning: " + subject + "\n\n"
+                + "Order Number: " + orderNumber + "\n\n"
                 + "Message: " + message;
 
         email.setText(body);
