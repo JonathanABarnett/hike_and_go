@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="adminFragments::head"></head>
+
+<body>
+
+<nav th:replace="adminFragments::navbar"></nav>
+
+<!-- Travel List Table -->
+<div class="container" style="padding-top: 15px">
+    <table class="table table-hover" id="travelListTable">
+        <thead>
+        <tr>
+            <th hidden="hidden"></th>
+            <th scope="col">Delete</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Location</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Our Price</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="travel : ${travelList}">
+            <td hidden="hidden" name="id" th:value="${travel.id}"></td>
+            <td>
+                <input hidden="hidden" name="id" th:value="${travel.id}" />
+                <input th:id="'selected' + ${travel.id}" class="checkBox checkboxTravel" type="checkbox" />
+            </td>
+            <td><a th:href="@{/admin/travelInfo(id=${travel.id})}"><img class="img-fluid" th:src="${travel.imgUrl}" style="max-width: 50px"/></a></td>
+            <td th:text="${travel.name}"><a th:href="@{/admin/supplyInfo(id=${travel.id})}"></a></td>
+            <td th:text="${travel.location}"></td>
+            <td th:text="${travel.startDate}"></td>
+            <td th:text="${travel.endDate}"></td>
+            <td th:text="'$' + ${#numbers.formatDecimal(travel.ourPrice, 0, 'COMMA', 2, 'POINT')}"></td>
+            <td>
+                <input hidden="hidden" name="id" th:value="${travel.id}" />
+                <button th:id="'oneTravel-' + ${travel.id}" class="btn btn-danger delete-travel" type="submit" value="delete">Delete
+                    <span><i class="fas fa-trash-alt"></i></span></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- <button th:id="deleteSelected" class="btn btn-danger" style="margin-top: 10px; margin-bottom: 15px">Delete Selected</button> -->
+</div>
+
+<!--- Footer -->
+<footer th:replace="adminFragments::footer"></footer>
+
+<span th:replace="fragments::scripts"></span>
+
+<script>
+    $(document).ready(function(){
+        $('#travelListTable').DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": true,
+            statesave: true
+        });
+    });
+</script>
+
+</body>
+
+</html>

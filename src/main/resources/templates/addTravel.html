@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="adminFragments::head"></head>
+
+<body>
+
+<nav th:replace="adminFragments::navbar"></nav>
+
+
+<div class="row">
+    <div class="col"></div>
+    <div class="col-xs-12 col-sm-10 col-md-8">
+        <div class="card">
+            <div class="card-header text-center"><h4 class="display-4">Add Travel</h4>
+                <p class="text-center text-muted">* Required Fields</p>
+            </div>
+            <div class="card-body">
+
+                <form th:action="@{/admin/travel/add}" method="post" th:object="${travel}">
+
+                    <!-- Travel Name -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="name" class="col-sm-4">* Travel Name</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="name"
+                                       placeholder="Enter Travel Name" required="required" name="name"
+                                       th:value="${travel.name}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="name" class="col-sm-4">* Location</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="location"
+                                       placeholder="Enter Location" required="required" name="location"
+                                       th:value="${travel.location}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="name" class="col-sm-4">* Start Date</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="startDate"
+                                       placeholder="Enter Start Date" required="required" name="startDate"
+                                       th:value="${travel.startDate}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="name" class="col-sm-4">* End Date</label>
+                            <div class="col-sm-8">
+                                <input type="date" class="form-control" id="endDate"
+                                       placeholder="Enter End Date" required="required" name="endDate"
+                                       th:value="${travel.endDate}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Number of Available Spots -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="maxPeople" class="col-sm-4">* Number of Available Spots </label>
+                            <div class="col-sm-8">
+                                <input type="number" step="1" class="form-control" id="maxPeople"
+                                       placeholder="Enter Max Amount of People" required="required" name="maxPeople"
+                                       th:value="${travel.maxPeople}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="features" class="col-sm-4">* Features</label>
+                            <div class="col-sm-8">
+                                <select multiple="multiple" class="form-control" th:value="${travel.features}" id="features"
+                                        name="features">
+                                    <option value="" disabled="disabled" selected="selected">Select Features</option>
+                                    <option value="Rock Climbing" th:selected="(${travel.features} == 'Rock Climbing')">
+                                        Rock Climbing
+                                    </option>
+                                    <option value="Ice Climbing" th:selected="(${travel.features} == 'Ice Climbing')">
+                                        Ice Climbing
+                                    </option>
+                                    <option value="Bouldering" th:selected="(${travel.features} == 'Bouldering')">
+                                        Bouldering
+                                    </option>
+                                    <option value="Rolling Hills" th:selected="(${travel.features} == 'Rolling Hills')">
+                                        Rolling Hills
+                                    </option>
+                                    <option value="Wandering in Woods" th:selected="(${travel.features} == 'Wandering in Woods')">
+                                        Wandering in Woods
+                                    </option>
+                                    <option value="Creek Fording" th:selected="(${travel.features} == 'Creek Fording')">
+                                        Creek Fording
+                                    </option>
+                                    <option value="Glacier Hiking" th:selected="(${travel.features} == 'Glacier Hiking')">
+                                        Glacier Hiking
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Our Price -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="ourPrice" class="col-sm-4">* Our Price</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">$</div>
+                                    </div>
+                                    <input type="number" step="any" class="form-control" id="ourPrice"
+                                           placeholder="Enter Our Price" required="required" name="ourPrice"
+                                           th:value="${travel.ourPrice}"/></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="experience" class="col-sm-4">* Experience Needed</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" th:value="${travel.experience}" id="experience"
+                                        name="experience">
+                                    <option value="" disabled="disabled" selected="selected">Select Experience Needed</option>
+                                    <option value="Beginner" th:selected="(${travel.experience} == 'Beginner')">
+                                        Beginner
+                                    </option>
+                                    <option value="Intermediate" th:selected="(${travel.experience} == 'Intermediate')">
+                                        Intermediate
+                                    </option>
+                                    <option value="Advanced" th:selected="(${travel.experience} == 'Advanced')">
+                                        Advanced
+                                    </option>
+                                    <option value="Expert" th:selected="(${travel.experience} == 'Expert')">
+                                        Expert
+                                    </option>
+                                    <option value="Family" th:selected="(${travel.experience} == 'Family')">
+                                        Family
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image URL -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="imgUrl" class="col-sm-4 col-form-label">* URL of Image</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="imgUrl"
+                                       placeholder="Enter URL of image" name="imgUrl"
+                                       th:value="${travel.imgUrl}" required="required" th:text="${travel.imgUrl}" />
+                                <small class="form-text text-muted">Add Image at <a href="https://imgbb.com/"
+                                                                                    target="_blank">imgbb.com</a>
+                                    to
+                                    get a URL for image.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video URL -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="imgUrl" class="col-sm-4 col-form-label">* URL of Image</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="videoUrl"
+                                       placeholder="Enter URL of video" name="videoUrl"
+                                       th:value="${travel.videoUrl}" required="required" th:text="${travel.videoUrl}" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="description" class="col-sm-4 col-form-label">* Description</label>
+                            <div class="col-sm-8">
+                              <textarea class="form-control" id="description" rows="5"
+                                        placeholder="Enter Description" name="description"
+                                        th:value="${travel.description}" th:utext="${travel.description}"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active/Inactive -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="active" class="col-sm-4 ">* Status</label>
+                            <div class="col-sm-8">
+                                <div class="form-check form-check-inline">
+                                    <input value="true" th:value="${travel.active}" type="radio" name="active" id="active"
+                                           class="form-check-input" checked="checked"/><label
+                                        class="form-check-label" for="active">
+                                    Active </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input value="true" th:value="${travel.active}" type="radio" name="inactive" id="inactive"
+                                           class="form-check-input"/><label class="form-check-label" for="inactive">
+                                    Inactive</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Add Travel</button>
+                    <a class="btn btn-warning" th:href="@{/admin/supply}">Cancel</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+
+<!--- Footer -->
+<footer th:replace="adminFragments::footer"></footer>
+
+</body>
+
+</html>

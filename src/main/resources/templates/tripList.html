@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments::head"></head>
+
+<body>
+
+<nav th:replace="fragments::navbar"></nav>
+
+<div class="row">
+    <div class="col-sm-3">
+        <h3><label for="category">Category</label></h3>
+       <!-- <div class="list-group" id="category">
+            <a th:href="@{/productList(category='all')}" th:classappend="${activeAll}? 'active'" class="list-group-item">All</a>
+            <a th:href="@{/searchByCategory(category='Backpacks')}" th:classappend="${activeBackpacks}? ' active'" class="list-group-item">Backpacks</a>
+            <a th:href="@{/searchByCategory(category='Clothing')}" th:classappend="${activeClothing}? ' active'" class="list-group-item">Clothing</a>
+            <a th:href="@{/searchByCategory(category='Camping Gear')}" th:classappend="${activeHistory}? ' active'" class="list-group-item">Camping Gear</a>
+        </div> -->
+    </div>
+
+    <div class="col-sm-9">
+        <div th:if="${emptyList}">
+            <h5>No results found. Please search again.</h5>
+        </div>
+        <div class="card" style="margin-top: 0em">
+            <div class="card-body">
+                <table class="table table-hover" id="tripListTable">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="text-center">Current Trips</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="product-item" th:each="trip : ${tripList}">
+                        <td>
+                            <div th:if="${trip != null}">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <a th:href="@{/tripDetail?id=} + ${trip.id}">
+                                            <img th:src="${trip.imgUrl}" class="img-fluid"/></a>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <a th:href="@{/tripDetail?id=} + ${trip.id}"><h4
+                                                th:text="${trip.name}"></h4></a>
+                                        <span><span
+                                                th:text="${product.category}"></span> / <span
+                                                th:text="${product.subCategory}">
+                                        </span></span>
+                                        <p style="margin-bottom: 0rem">
+                                            <small th:text="${product.color}"></small>
+                                        </p>
+                                        <span><span th:text="${#numbers.formatDecimal(product.weight, 0, 'COMMA', 1, 'POINT')}"></span>
+                                            lbs</span>
+                                        <br/>
+                                        <a th:href="@{|${product.companyWebsite}|}" target="_blank"><span
+                                                th:text="${product.company}"></span></a>
+                                        <br/>
+                                        <span style="font-size: large; color: green">$<span
+                                                th:text="${#numbers.formatDecimal(trip.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
+                                        <br/>
+                                        <p th:utext="${#strings.abbreviate(trip.description, 500)}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--- Footer -->
+<footer th:replace="fragments::footer"></footer>
+
+<span th:replace="fragments::scripts"></span>
+
+<script>
+    $(document).ready(function(){
+        $("#tripListTable").DataTable({
+            "lengthMenu": [[5, 10, 15, 20, -1], [5, 10, 15, 20, "All"]],
+            "ordering": false,
+            statesave: true
+        });
+    });
+</script>
+
+</body>
+
+</html>
