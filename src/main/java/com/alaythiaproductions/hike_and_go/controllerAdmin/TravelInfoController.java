@@ -21,7 +21,7 @@ public class TravelInfoController {
     public String travelInfo(@RequestParam("id") Long id, Model model) {
         Travel travel = travelService.findOne(id);
         model.addAttribute("title", travel.getName());
-        model.addAttribute("product", travel);
+        model.addAttribute("travel", travel);
         return "travelInfo";
     }
 }

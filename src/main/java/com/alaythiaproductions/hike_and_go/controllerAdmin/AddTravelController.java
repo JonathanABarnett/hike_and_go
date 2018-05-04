@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -30,10 +31,17 @@ public class AddTravelController {
     }
 
     @PostMapping(value = "/travel/add")
-    public String addSupplyPost(Model model, @ModelAttribute("travel") Travel travel, HttpServletRequest request) {
+    public String addSupplyPost(Model model, @ModelAttribute("travel") Travel travel,
+                                @ModelAttribute("features") List<String> features, HttpServletRequest request) {
         model.addAttribute("title", "Add Trip");
+        String feats = "";
+        for (String s : features) {
+            feats.concat(s + " | ");
+        }
+        travel.setFeatures(feats);
 
         travelService.save(travel);
         return "redirect:/admin/travel";
     }
 }
+
