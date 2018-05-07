@@ -38,4 +38,9 @@ public class TravelServiceImpl implements TravelService {
         }
         return activeTravelList;
     }
+
+    @Override
+    public void removeOne(Long id) {
+        travelRepository.delete(id);
+    }
 }

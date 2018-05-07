@@ -11,4 +11,6 @@ public interface TravelService {
     Travel findOne(Long id);
 
     List<Travel> findAll();
+
+    void removeOne(Long id);
 }

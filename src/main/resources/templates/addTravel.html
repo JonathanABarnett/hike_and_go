@@ -34,7 +34,7 @@
                     <!-- Location -->
                     <div class="form-group">
                         <div class="form-row">
-                            <label for="name" class="col-sm-4">* Location</label>
+                            <label for="location" class="col-sm-4">* Location</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="location"
                                        placeholder="Enter Location" required="required" name="location"
@@ -46,7 +46,7 @@
                     <!-- Start Date -->
                     <div class="form-group">
                         <div class="form-row">
-                            <label for="name" class="col-sm-4">* Start Date</label>
+                            <label for="startDate" class="col-sm-4">* Start Date</label>
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" id="startDate"
                                        placeholder="Enter Start Date" required="required" name="startDate"
@@ -58,11 +58,23 @@
                     <!-- End Date -->
                     <div class="form-group">
                         <div class="form-row">
-                            <label for="name" class="col-sm-4">* End Date</label>
+                            <label for="endDate" class="col-sm-4">* End Date</label>
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" id="endDate"
                                        placeholder="Enter End Date" required="required" name="endDate"
                                        th:value="${travel.endDate}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- No. of Days -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="noDays" class="col-sm-4">* Number of Days</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control" id="noDays"
+                                       placeholder="Enter Total Number of Days" required="required" name="numOfDays"
+                                       th:value="${travel.numOfDays}"/>
                             </div>
                         </div>
                     </div>

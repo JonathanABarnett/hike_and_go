@@ -31,7 +31,7 @@
                 <input th:id="'selected' + ${travel.id}" class="checkBox checkboxTravel" type="checkbox" />
             </td>
             <td><a th:href="@{/admin/travelInfo(id=${travel.id})}"><img class="img-fluid" th:src="${travel.imgUrl}" style="max-width: 50px"/></a></td>
-            <td th:text="${travel.name}"><a th:href="@{/admin/supplyInfo(id=${travel.id})}"></a></td>
+            <td th:text="${travel.name}"><a th:href="@{/admin/travelInfo(id=${travel.id})}"></a></td>
             <td th:text="${travel.location}"></td>
             <td th:text="${travel.startDate}"></td>
             <td th:text="${travel.endDate}"></td>

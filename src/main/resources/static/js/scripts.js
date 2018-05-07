@@ -111,12 +111,86 @@ $(document).ready(function () {
                 }
             },
             callback: function (confirmed) {
-                console.log("Now here");
                 if (confirmed) {
                     $.ajax({
                         type: 'POST',
                         url: path,
                         data: JSON.stringify(productIdList),
+                        contentType: "application/json",
+                        success: function (res) {
+                            console.log(res);
+                            location.reload()
+                        },
+                        error: function (res) {
+                            console.log(res);
+                            location.reload();
+                        }
+                    });
+                }
+            }
+        });
+
+
+    });
+
+    $('.delete-travel').on('click', function () {
+        /*<![CDATA[*/
+        var path = /*[[@{/}]]*/'removeTravel';
+        /*]]>*/
+
+        var id = $(this).attr('id');
+
+        bootbox.confirm({
+            message: "Are you sure you would like to delete this travel?",
+            buttons: {
+                cancel: {
+                    label: '<i class="fas fa-times"></i> Cancel'
+                },
+                confirm: {
+                    label: '<i class="fas fa-check"></i> Confirm'
+                }
+            },
+            callback: function (confirmed) {
+                if (confirmed) {
+                    $.post(path, {'id': id}, function (res) {
+                        console.log(res);
+                        location.reload();
+                    });
+                }
+            }
+        });
+    });
+
+    $('#deleteTravelSelected').click(function () {
+        var idTravelList = $('.checkboxTravel');
+        var travelIdList = [];
+        for (var i = 0; i < idList.length; i++) {
+            if (idTravelList[i].checked == true) {
+                console.log(idTravelList[i]);
+                travelIdList.push(idTravelList[i]['id'])
+            }
+        }
+
+        /*<![CDATA[*/
+        var path = /*[[@{/}]]*/'removeTravelList';
+        /*]]>*/
+
+        bootbox.confirm({
+            message: "Are you sure you would like to delete all selected travels?",
+            buttons: {
+                cancel: {
+                    label: '<i class="fas fa-times"></i> Cancel'
+                },
+                confirm: {
+                    label: '<i class="fas fa-check"></i> Confirm'
+                }
+            },
+            callback: function (confirmed) {
+                if (confirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        url: path,
+                        data: JSON.stringify(travelIdList),
                         contentType: "application/json",
                         success: function (res) {
                             console.log(res);
