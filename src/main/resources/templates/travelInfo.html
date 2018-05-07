@@ -28,19 +28,33 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <p><strong>Location: </strong><span th:text="${travel.location}"></span></p>
-                        <p><strong>End Date: </strong><span th:text="${travel.features}"></span></p>
+                        <p><strong>Features: </strong><span th:text="${travel.features}"></span></p>
                         <p><strong>Start Date: </strong><span th:text="${travel.startDate}"></span></p>
                         <p><strong>End Date: </strong><span th:text="${travel.endDate}"></span></p>
                     </div>
                     <div class="col-sm-6">
                         <p><strong>Experience Level: </strong><span th:text="${travel.experience}"></span></p>
-                        <p><strong>Our Price: </strong><span th:text="${travel.ourPrice}"></span></p>
+                        <p><strong>Our Price: </strong><span th:text="'$' + ${#numbers.formatDecimal(travel.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></p>
                         <p><strong>Max Number of People: </strong><span th:text="${travel.maxPeople}"></span></p>
+                        <p><button type="button" class="btn btn-lg btnCenter" data-toggle="modal"
+                                   th:attr="data-target='.' + ${travel.id} +'-modal-lg'" th:text="${travel.name} + ' Tour Video'"></button></p>
                     </div>
                 </div>
 
                 <p><strong>Description: </strong><span th:utext="${travel.description}"></span></p>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal fade " th:classappend="${travel.id} + '-modal-lg'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item " th:src="${travel.videoUrl}" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+            </div>
+            <p class="socialWrapper text-center"><strong th:text="${travel.name} + ' Video'"></strong></p>
         </div>
     </div>
 </div>

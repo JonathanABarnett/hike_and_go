@@ -32,13 +32,8 @@ public class AddTravelController {
 
     @PostMapping(value = "/travel/add")
     public String addSupplyPost(Model model, @ModelAttribute("travel") Travel travel,
-                                @ModelAttribute("features") List<String> features, HttpServletRequest request) {
+                                HttpServletRequest request) {
         model.addAttribute("title", "Add Trip");
-        String feats = "";
-        for (String s : features) {
-            feats.concat(s + " | ");
-        }
-        travel.setFeatures(feats);
 
         travelService.save(travel);
         return "redirect:/admin/travel";

@@ -209,7 +209,7 @@
                                     </div>
                                     <input type="number" step="any" class="form-control" id="listPrice"
                                            placeholder="Enter List Price" required="required" name="listPrice"
-                                           th:value="${product.listPrice}"/>
+                                           th:value="${#numbers.formatDecimal(product.listPrice, 0, 'COMMA', 2, 'POINT')}"/>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +226,8 @@
                                     </div>
                                     <input type="number" step="any" class="form-control" id="ourPrice"
                                            placeholder="Enter Our Price" required="required" name="ourPrice"
-                                           th:value="${product.ourPrice}"/></div>
+                                           th:value="${#numbers.formatDecimal(product.ourPrice, 0, 'COMMA', 2, 'POINT')}" />
+                                </div>
                             </div>
                         </div>
                     </div>

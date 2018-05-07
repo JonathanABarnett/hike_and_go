@@ -18,7 +18,7 @@ public class Travel {
     private int maxPeople;
     private String location;
     private String experience;
-    private String features;
+    private ArrayList<String> features;
     @Column(columnDefinition = "text")
     private String imgUrl;
     @Column(columnDefinition = "text")
@@ -95,11 +95,11 @@ public class Travel {
         this.experience = experience;
     }
 
-    public String getFeatures() {
+    public ArrayList<String> getFeatures() {
         return features;
     }
 
-    public void setFeatures(String features) {
+    public void setFeatures(ArrayList<String> features) {
         this.features = features;
     }
 

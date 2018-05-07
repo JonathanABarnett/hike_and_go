@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -26,9 +27,9 @@ public class UpdateTravelController {
     }
 
     @PostMapping(value = "/updateTravel")
-    public String updateTravelPost(@ModelAttribute("travel") Travel travel, Model model, HttpServletRequest request) {
+    public String updateTravelPost(@ModelAttribute("travel") Travel travel,
+                                   Model model, HttpServletRequest request) {
         travelService.save(travel);
-        model.addAttribute("title", travel.getName());
         return "redirect:travelInfo?id=" + travel.getId();
     }
 }
