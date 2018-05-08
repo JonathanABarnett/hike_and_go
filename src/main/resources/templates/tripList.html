@@ -45,18 +45,27 @@
                                         <br/>
                                         <span><p><button type="button" class="btn btn-lg btnCenter" data-toggle="modal"
                                                          th:attr="data-target='.' + ${trip.id} +'-modal-lg'" th:text="${trip.name} + ' Tour Video'"></button></p></span>
-                                        <p style="margin-bottom: 0rem">Start Date:
-                                            <small th:text="${trip.startDate}"></small>
-                                        </p>
+                                        <p style="margin-bottom: 0rem">Start Date: <span th:text="${trip.startDate}"></span></p>
                                         <p><strong>Location: </strong><span th:text="${trip.locationCity} +
                                         ', ' + ${trip.locationState} + ' ' + ${trip.locationCountry}"></span></p>
-                                        <br/>
-                                        <p>Number of days: <span th:text="${trip.numOfDays}"></span></p>
-                                        <br/>
+                                        <p style="font-size: small;"><strong>Tags: </strong><span th:text="${trip.experience}"></span></p>
+                                        <p><strong>Number of days: </strong><span th:text="${trip.numOfDays}"></span></p>
+                                        <p><strong>Required Experience: </strong><span th:text="${trip.experience}"></span></p>
                                         <span style="font-size: large; color: green">$<span
                                                 th:text="${#numbers.formatDecimal(trip.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
                                         <br/>
                                         <p th:utext="${#strings.abbreviate(trip.description, 500)}"></p>
+                                        <!-- Video Modal -->
+                                        <div class="modal fade " th:classappend="${trip.id} + '-modal-lg'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item " th:src="${trip.videoUrl}" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+                                                    </div>
+                                                    <p class="socialWrapper text-center"><strong th:text="${trip.name} + ' Video'"></strong></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -69,17 +78,7 @@
     </div>
 </div>
 
-<!-- Video Modal -->
-<div class="modal fade " th:classappend="${trip.id} + '-modal-lg'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item " th:src="${trip.videoUrl}" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
-            </div>
-            <p class="socialWrapper text-center"><strong th:text="${trip.name} + ' Video'"></strong></p>
-        </div>
-    </div>
-</div>
+
 
 
 <!--- Footer -->

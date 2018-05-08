@@ -25,7 +25,7 @@ public class TravelController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/listOfTrips")
+    @RequestMapping(value = "/tripList")
     public String listOfTrips(Model model) {
         model.addAttribute("title", "Travel");
         List<Travel> travelList = travelService.findAll();
@@ -35,7 +35,7 @@ public class TravelController {
             return "tripList";
         }
 
-        model.addAttribute("travelList", travelList);
+        model.addAttribute("tripList", travelList);
         model.addAttribute("activeAll", true);
         return "tripList";
     }

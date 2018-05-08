@@ -60,6 +60,13 @@ public class HomeController {
             }
         }
 
+        /* Backpack specials
+        specialList.add(productService.findOne(1L));
+        specialList.add(productService.findOne(2L));
+        specialList.add(productService.findOne(3L));
+        specialList.add(productService.findOne(4L));
+        */
+
         model.addAttribute("specialList", specialList);
 
         return "index";

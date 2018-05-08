@@ -38,7 +38,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/contactUs",
             "/searchByCategory",
             "/searchProduct",
-            "/productList"
+            "/productList",
+            "/tripList",
+            "/tripDetail"
     };
 
     @Override
