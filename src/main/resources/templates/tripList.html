@@ -42,18 +42,16 @@
                                     <div class="col-sm-8">
                                         <a th:href="@{/tripDetail?id=} + ${trip.id}"><h4
                                                 th:text="${trip.name}"></h4></a>
-                                        <span><span
-                                                th:text="${product.category}"></span> / <span
-                                                th:text="${product.subCategory}">
-                                        </span></span>
-                                        <p style="margin-bottom: 0rem">
-                                            <small th:text="${product.color}"></small>
-                                        </p>
-                                        <span><span th:text="${#numbers.formatDecimal(product.weight, 0, 'COMMA', 1, 'POINT')}"></span>
-                                            lbs</span>
                                         <br/>
-                                        <a th:href="@{|${product.companyWebsite}|}" target="_blank"><span
-                                                th:text="${product.company}"></span></a>
+                                        <span><p><button type="button" class="btn btn-lg btnCenter" data-toggle="modal"
+                                                         th:attr="data-target='.' + ${trip.id} +'-modal-lg'" th:text="${trip.name} + ' Tour Video'"></button></p></span>
+                                        <p style="margin-bottom: 0rem">Start Date:
+                                            <small th:text="${trip.startDate}"></small>
+                                        </p>
+                                        <p><strong>Location: </strong><span th:text="${trip.locationCity} +
+                                        ', ' + ${trip.locationState} + ' ' + ${trip.locationCountry}"></span></p>
+                                        <br/>
+                                        <p>Number of days: <span th:text="${trip.numOfDays}"></span></p>
                                         <br/>
                                         <span style="font-size: large; color: green">$<span
                                                 th:text="${#numbers.formatDecimal(trip.ourPrice, 0, 'COMMA', 2, 'POINT')}"></span></span>
@@ -67,6 +65,18 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- Video Modal -->
+<div class="modal fade " th:classappend="${trip.id} + '-modal-lg'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item " th:src="${trip.videoUrl}" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+            </div>
+            <p class="socialWrapper text-center"><strong th:text="${trip.name} + ' Video'"></strong></p>
         </div>
     </div>
 </div>

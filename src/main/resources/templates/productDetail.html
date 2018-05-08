@@ -10,11 +10,11 @@
 <div class="container" style="padding-top: 15px">
 
 <div th:if="${emptyList}">
-    <h4 class="text text-danger">Oops, nothing was found. Try again.</h4>
+    <h4 class="text text-danger">Nothing was found. Try again.</h4>
 </div>
 
 <div th:if="${notEnoughStock}" class="alert alert-warning">
-    Oops, we don't have enough stock. Please update product quantity.
+    We don't have enough stock. Please update product quantity.
 </div>
 
 <div th:if="${addProductSuccess}" class="alert alert-success">

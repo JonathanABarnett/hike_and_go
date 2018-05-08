@@ -16,7 +16,7 @@
             <th scope="col">Delete</th>
             <th scope="col">Image</th>
             <th scope="col">Name</th>
-            <th scope="col">Location</th>
+            <th scope="col">State/Province</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
             <th scope="col">Our Price</th>
@@ -32,7 +32,7 @@
             </td>
             <td><a th:href="@{/admin/travelInfo(id=${travel.id})}"><img class="img-fluid" th:src="${travel.imgUrl}" style="max-width: 50px"/></a></td>
             <td th:text="${travel.name}"><a th:href="@{/admin/travelInfo(id=${travel.id})}"></a></td>
-            <td th:text="${travel.location}"></td>
+            <td th:text="${travel.locationState}"></td>
             <td th:text="${travel.startDate}"></td>
             <td th:text="${travel.endDate}"></td>
             <td th:text="'$' + ${#numbers.formatDecimal(travel.ourPrice, 0, 'COMMA', 2, 'POINT')}"></td>

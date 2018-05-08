@@ -16,7 +16,9 @@ public class Travel {
     private String endDate;
     private int numOfDays;
     private int maxPeople;
-    private String location;
+    private String locationCity;
+    private String locationState;
+    private String locationCountry;
     private String experience;
     private ArrayList<String> features;
     @Column(columnDefinition = "text")
@@ -79,12 +81,28 @@ public class Travel {
         this.maxPeople = maxPeople;
     }
 
-    public String getLocation() {
-        return location;
+    public String getLocationCity() {
+        return locationCity;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    public String getLocationState() {
+        return locationState;
+    }
+
+    public void setLocationState(String locationState) {
+        this.locationState = locationState;
+    }
+
+    public String getLocationCountry() {
+        return locationCountry;
+    }
+
+    public void setLocationCountry(String locationCountry) {
+        this.locationCountry = locationCountry;
     }
 
     public String getExperience() {

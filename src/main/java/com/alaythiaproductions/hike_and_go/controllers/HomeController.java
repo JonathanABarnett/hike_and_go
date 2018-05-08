@@ -39,10 +39,18 @@ public class HomeController {
 
         List<Product> specialList = new ArrayList<>();
 
+        // For random specials on home page
+        long maxId = 0;
 
+        for (Product product : productList) {
+            if (product.getId() > maxId) {
+                maxId = product.getId();
+            }
+        }
 
         for (int i = 0; i < 4; i++) {
-            Integer id = random.nextInt(productList.size() + 1);
+
+            int id = random.nextInt((int)maxId + 1);
             Long longId = Long.valueOf(id);
             Product backpack = productService.findOne(longId);
             if (backpack != null && !specialList.contains(backpack)) {

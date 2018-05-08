@@ -64,6 +64,10 @@ public class USConstants {
             put("WV", "West Virginia");
             put("WI", "Wisconsin");
             put("WY", "Wyoming");
+            put("AB", "Alberta");
+            put("BC", "British Columbia");
+            put("NT", "Northwest Territories");
+            put("YT", "Yukon");
         }
     };
 

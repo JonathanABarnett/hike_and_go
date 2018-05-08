@@ -31,14 +31,50 @@
                         </div>
                     </div>
 
-                    <!-- Location -->
+                    <!-- City -->
                     <div class="form-group">
                         <div class="form-row">
-                            <label for="location" class="col-sm-4">* Location</label>
+                            <label for="city" class="col-sm-4">* Nearest City</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="location"
-                                       placeholder="Enter Location" required="required" name="location"
-                                       th:value="${travel.location}"/>
+                                <input type="text" class="form-control" id="city"
+                                       placeholder="Enter Nearest City" required="required" name="city"
+                                       th:value="${travel.locationCity}"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- State -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="state" class="col-sm-4">* State/Providence</label>
+                            <div class="col-sm-8">
+                                <select id="state" class="form-control" name="state"
+                                        th:value="${travel.locationState}" required="required">
+                                    <option th:each="state : ${stateList}" th:text="${state}"
+                                            th:selected="(${travel.locationState}==${state})"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Country -->
+                    <div class="form-group">
+                        <div class="form-row">
+                            <label for="country" class="col-sm-4">* Country</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" th:value="${travel.locationCountry}" id="country"
+                                        name="experience">
+                                    <option value="" disabled="disabled" selected="selected">Select Country</option>
+                                    <option value="USA" th:selected="(${travel.locationCountry} == 'USA')">
+                                        USA
+                                    </option>
+                                    <option value="Canada" th:selected="(${travel.locationCountry} == 'Canada')">
+                                        Canada
+                                    </option>
+                                    <option value="Mexico" th:selected="(${travel.locationCountry} == 'Mexico')">
+                                        Mexico
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>

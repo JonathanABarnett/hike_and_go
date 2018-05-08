@@ -27,7 +27,8 @@
                 <h3 th:text="${travel.name}"></h3>
                 <div class="row">
                     <div class="col-sm-6">
-                        <p><strong>Location: </strong><span th:text="${travel.location}"></span></p>
+                        <p><strong>Location: </strong><span th:text="${travel.locationCity} +
+                           ', ' + ${travel.locationState} + ' ' + ${travel.locationCountry}"></span></p>
                         <p><strong>Features: </strong><span th:text="${travel.features}"></span></p>
                         <p><strong>Start Date: </strong><span th:text="${travel.startDate}"></span></p>
                         <p><strong>End Date: </strong><span th:text="${travel.endDate}"></span></p>
