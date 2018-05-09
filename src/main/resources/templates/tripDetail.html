@@ -18,7 +18,8 @@
     </div>
 
     <div th:if="${addTravelSuccess}" class="alert alert-success">
-        Added Travel to Shopping Cart!  <a th:href="@{/shoppingCart/cart}"> Ready to checkout? <i class="fas fa-shopping-cart"></i></a>
+        Added Travel to Shopping Cart! <a th:href="@{/shoppingCart/cart}"> Ready to checkout? <i
+            class="fas fa-shopping-cart"></i></a>
     </div>
 
     <div class="row">
@@ -31,22 +32,39 @@
                     <br/>
                     <br/>
                     <img class="img-fluid" th:src="${travel.imgUrl}"/>
+                    <button style="margin-top: 10px" type="button" class="btn btn-lg btnCenter" data-toggle="modal"
+                            th:attr="data-target='.' + ${travel.id} +'-modal-lg'">Tour Video</button>
+
+                    <!-- Video Modal -->
+                    <div class="modal fade " th:classappend="${travel.id} + '-modal-lg'" tabindex="-1" role="dialog"
+                         aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item " th:src="${travel.videoUrl}"
+                                            allowfullscreen="allowfullscreen" allow="autoplay"></iframe>
+                                </div>
+                                <p class="socialWrapper text-center"><strong
+                                        th:text="${travel.name} + ' Video'"></strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="col-md-9">
                     <h3 th:text="${travel.name}">Trip Name</h3>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <p><strong>Category: </strong><span th:text="${product.category}"></span></p>
-                            <p><strong>Subcategory: </strong><span th:text="${product.category}"></span></p>
-                            <p><strong>Color: </strong><span th:text="${product.color}"></span></p>
-                            <p><strong>Gender: </strong><span th:text="${product.gender}"></span></p>
-                            <p><strong>Company: </strong><a th:href="@{|${product.companyWebsite}|}" target="_blank"><span
-                                    th:text="${product.company}"></span></a></p>
-                            <p><strong>Weight: </strong><span
-                                    th:text="${#numbers.formatDecimal(product.weight, 0, 'COMMA', 1, 'POINT')}"></span> pounds</p>
-                            <p><strong>Size: </strong><span th:text="${product.size}"></span></p>
+                        <div class="col-sm-6">
+                            <p><strong>Location: </strong><span th:text="${travel.locationCity} +
+        ',                  ' + ${travel.locationState} + ' ' + ${travel.locationCountry}"></span></p>
+                            <p><strong>Features: </strong><span th:text="${travel.features}"></span></p>
+                            <p><strong>Start Date: </strong><span th:text="${travel.startDate}"></span></p>
+                            <p><strong>Return Date: </strong><span th:text="${travel.endDate}"></span></p>
+                            <p><strong>No. of Days: </strong><span th:text="${travel.numOfDays}"></span></p>
+                            <p><strong>Experience: </strong><span th:text="${travel.experience}"></span></p>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <div class="card" style="margin-top: 0em">
                                 <div class="card-body">
                                     <div class="col">
@@ -61,18 +79,18 @@
                                     </div>
                                     <div class="col">
                                         <br/>
-                                        <h4 class="card-text" th:if="*{product.numberOfStock &gt;=10}"
-                                            style="color: green;">In Stock</h4>
+                                        <h4 class="card-text" th:if="*{travel.maxPeople &gt;=5}"
+                                            style="color: green;" th:text="${travel.maxPeople} + ' Spots Available'"></h4>
                                         <h4 class="card-text"
-                                            th:if="*{product.numberOfStock &lt;10 and product.numberOfStock &gt;0}"
-                                            style="color: darkorange">Limited Supply Left <span>(<span
-                                                th:text="${product.numberOfStock}"></span> left)</span></h4>
-                                        <h4 class="card-text" th:if="*{product.numberOfStock == 0}" style="color: darkred">
+                                            th:if="*{travel.maxPeople &lt;5 and travel.maxPeople &gt;0}"
+                                            style="color: darkorange">Limited Spots Left <span>(<span
+                                                th:text="${travel.maxPeople}"></span> left)</span></h4>
+                                        <h4 class="card-text" th:if="*{travel.maxPeople == 0}" style="color: darkred">
                                             Unavailable</h4>
                                         <br/>
                                         <button class="btn btn-warning" type="submit"
                                                 style="color: black; border: 1px solid black; margin-top: 10px">
-                                            Add To Cart
+                                            Add Trip To Cart
                                         </button>
                                     </div>
                                 </div>
