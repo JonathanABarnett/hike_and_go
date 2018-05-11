@@ -32,6 +32,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 cartItemService.updateCartItem(cartItem);
                 cartTotal = cartTotal.add(cartItem.getSubTotal());
             }
+//            if(cartItem.getTravel().getMaxPeople() > 0) {
+//                cartItemService.updateCartItem(cartItem);
+//                cartTotal = cartTotal.add(cartItem.getSubTotal());
+//            }
         }
 
         shoppingCart.setGrandTotal(cartTotal);

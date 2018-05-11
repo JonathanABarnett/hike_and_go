@@ -3,6 +3,7 @@ package com.alaythiaproductions.hike_and_go.service.implementation;
 import com.alaythiaproductions.hike_and_go.model.*;
 import com.alaythiaproductions.hike_and_go.repository.CartItemRepository;
 import com.alaythiaproductions.hike_and_go.repository.ProductToCartItemRepository;
+import com.alaythiaproductions.hike_and_go.repository.TravelToCartItemRepository;
 import com.alaythiaproductions.hike_and_go.service.service.CartItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,10 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Autowired
     private ProductToCartItemRepository productToCartItemRepository;
+
+    @Autowired
+    private TravelToCartItemRepository travelToCartItemRepository;
+
 
     @Override
     public List<CartItem> findByShoppingCart(ShoppingCart shoppingCart) {
@@ -62,6 +67,35 @@ public class CartItemServiceImpl implements CartItemService {
 
         return cartItem;
     }
+
+//    @Override
+//    public CartItem addTravelToCartItem(Travel travel, User user, Integer quantity) {
+//        List<CartItem> cartItemList = findByShoppingCart(user.getShoppingCart());
+//
+//        for (CartItem cartItem : cartItemList) {
+//            if (travel.getId() == cartItem.getTravel().getId()) {
+//                cartItem.setQty(cartItem.getQty() + quantity);
+//                cartItem.setSubTotal(new BigDecimal(travel.getOurPrice()).multiply(new BigDecimal(quantity)));
+//                cartItemRepository.save(cartItem);
+//                return cartItem;
+//            }
+//        }
+//
+//        CartItem cartItem = new CartItem();
+//        cartItem.setShoppingCart(user.getShoppingCart());
+//        cartItem.setTravel(travel);
+//
+//        cartItem.setQty(quantity);
+//        cartItem.setSubTotal(new BigDecimal(travel.getOurPrice()).multiply(new BigDecimal(quantity)));
+//        cartItemRepository.save(cartItem);
+//
+//        TravelToCartItem travelToCartItem = new TravelToCartItem();
+//        travelToCartItem.setTravel(travel);
+//        travelToCartItem.setCartItem(cartItem);
+//        travelToCartItemRepository.save(travelToCartItem);
+//
+//        return cartItem;
+//    }
 
     @Override
     public CartItem findById(Long cartItemId) {
