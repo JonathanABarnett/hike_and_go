@@ -82,9 +82,17 @@ public class CheckoutController {
         }
 
         for (CartItem cartItem : cartItemList) {
-            if (cartItem.getProduct().getNumberOfStock() < cartItem.getQty()) {
-                model.addAttribute("notEnoughStock", true);
-                return "forward:/shoppingCart/cart";
+            if (cartItem.getProduct() != null) {
+                if (cartItem.getProduct().getNumberOfStock() < cartItem.getQty()) {
+                    model.addAttribute("notEnoughStock", true);
+                    return "forward:/shoppingCart/cart";
+                }
+            }
+            if (cartItem.getTravel() != null) {
+                if (cartItem.getTravel().getMaxPeople() < cartItem.getQty()) {
+                    model.addAttribute("notEnoughSpots", true);
+                    return "forward:/shoppingCart/cart";
+                }
             }
         }
 

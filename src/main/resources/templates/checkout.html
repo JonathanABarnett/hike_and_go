@@ -29,7 +29,8 @@
                                         Total Before Tax:
                                     </div>
                                     <div class="col-xs-12 col-md-5 text-right">
-                                        $<span th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 2)}"></span>
+                                        $<span
+                                            th:text="${#numbers.formatDecimal(shoppingCart.grandTotal, 0, 2)}"></span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -466,7 +467,8 @@
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="shippingMethod" value="premiumShipping" id="premiumShipping"/>
+                                                    <input type="radio" name="shippingMethod" value="premiumShipping"
+                                                           id="premiumShipping"/>
                                                     Premium Shipping
                                                 </label>
                                             </div>
@@ -481,6 +483,7 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="cartItem : ${cartItemList}">
+                                                    <span th:if="${cartItem.getProduct() != null}">
                                                     <td colspan="7">
                                                         <div class="row">
                                                             <div class="col">
@@ -516,6 +519,46 @@
                                                         <p style="font-size:large;" th:text="${cartItem.qty}"></p>
 
                                                     </td>
+                                                        </span>
+
+                                                    <!-- Travel -->
+                                                    <span th:if="${cartItem.getTravel() != null}">
+                                                    <td colspan="7">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <a th:href="@{/tripDetail(id=${cartItem.travel.id})}">
+                                                                    <img class="img-fluid" style="max-width: 100px"
+                                                                         th:src="${cartItem.travel.imgUrl}"/>
+                                                                </a>
+                                                            </div>
+                                                            <div class="col">
+                                                                <a th:href="@{/tripDetail(id=${cartItem.travel.id})}">
+                                                                    <h6 th:text="${cartItem.travel.name}"></h6>
+                                                                </a>
+                                                                <p th:if="${cartItem.travel.maxPeople&gt;=10}"
+                                                                   style="color: green;">Spots Left</p>
+                                                                <p th:if="${cartItem.travel.maxPeople&lt;10 and cartItem.travel.maxPeople&gt;0}"
+                                                                   style="color: orange;">Only <span
+                                                                        th:text="${cartItem.travel.maxPeople}"> Spots Left</span>
+                                                                </p>
+                                                                <p th:if="${cartItem.travel.maxPeople==0}"
+                                                                   style="color: darkred;">Out of Spots</p>
+                                                                <a th:href="@{/shoppingCart/removeItem?id=} + ${cartItem.id}">Delete
+                                                                    All</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <p style="color: green; font-size: large">$<span
+                                                                th:text="${cartItem.travel.ourPrice}"
+                                                                th:style="${cartItem.travel.maxPeople}==0? 'text-decoration: line-through' : ''"></span>
+                                                        </p>
+                                                    </td>
+                                                    <td colspan="3">
+                                                        <p style="font-size:large;" th:text="${cartItem.qty}"></p>
+
+                                                    </td>
+                                                        </span>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -581,10 +624,12 @@
                                                     Total (
                                                     <span th:text="${#lists.size(cartItemList)}"></span> items
                                                     ):</strong>
-                                                    <span class="freeShipping" style="color: #db3208; font-size: large;">$<span
+                                                    <span class="freeShipping"
+                                                          style="color: #db3208; font-size: large;">$<span
                                                             th:with="total = ${shoppingCart.grandTotal + shoppingCart.grandTotal * 0.08}"
                                                             th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></span>
-                                                    <span class="premiumShipping" style="color: #db3208; font-size: large;">$<span
+                                                    <span class="premiumShipping"
+                                                          style="color: #db3208; font-size: large;">$<span
                                                             th:with="total = ${shoppingCart.grandTotal + shoppingCart.grandTotal * 0.1 + shoppingCart.grandTotal * 0.08}"
                                                             th:text="${#numbers.formatDecimal(total, 0, 2)}"></span></span>
                                                 </h4>
