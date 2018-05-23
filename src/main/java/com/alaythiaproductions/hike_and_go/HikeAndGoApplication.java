@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-public class HikeAndGoApplication  {
+public class HikeAndGoApplication  /*implements CommandLineRunner */{
 
 //    @Autowired
 //    private UserService userService;

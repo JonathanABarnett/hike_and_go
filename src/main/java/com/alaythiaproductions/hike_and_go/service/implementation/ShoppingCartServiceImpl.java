@@ -28,14 +28,19 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
 
         for (CartItem cartItem : cartItemList) {
-            if(cartItem.getProduct().getNumberOfStock() > 0) {
-                cartItemService.updateCartItem(cartItem);
-                cartTotal = cartTotal.add(cartItem.getSubTotal());
+
+            if (cartItem.getProduct() != null) {
+                if (cartItem.getProduct().getNumberOfStock() > 0) {
+                    cartItemService.updateCartItem(cartItem);
+                    cartTotal = cartTotal.add(cartItem.getSubTotal());
+                }
             }
-//            if(cartItem.getTravel().getMaxPeople() > 0) {
-//                cartItemService.updateCartItem(cartItem);
-//                cartTotal = cartTotal.add(cartItem.getSubTotal());
-//            }
+            if (cartItem.getTravel() != null) {
+                if (cartItem.getTravel().getMaxPeople() > 0) {
+                    cartItemService.updateCartItem(cartItem);
+                    cartTotal = cartTotal.add(cartItem.getSubTotal());
+                }
+            }
         }
 
         shoppingCart.setGrandTotal(cartTotal);

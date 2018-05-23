@@ -74,31 +74,35 @@ public class ShoppingCartController {
         return "forward:/productDetail?id=" + product.getId();
     }
 
-//    @RequestMapping(value = "/addTravel")
-//    public String addItem(@ModelAttribute("trip") Travel trip,
-//                          @ModelAttribute("qty") String qty,
-//                          Principal principal, Model model) {
-//        model.addAttribute("title", "Add Trip");
-//        User user = userService.findByUsername(principal.getName());
-//
-//        trip = travelService.findOne(trip.getId());
-//
-//        if (Integer.parseInt(qty) > trip.getMaxPeople()) {
-//            model.addAttribute("notEnoughSpots", true);
-//            return "forward:/tripDetail?id=" + trip.getId();
-//        }
-//
-//        CartItem cartItem = cartItemService.addTravelToCartItem(trip, user, Integer.parseInt(qty));
-//        model.addAttribute("addTravelSuccess", true);
-//
-//        return "forward:/tripDetail?id=" + trip.getId();
-//    }
+    @RequestMapping(value = "/addTravel")
+    public String addItem(@ModelAttribute("trip") Travel trip,
+                          @ModelAttribute("qty") String qty,
+                          Principal principal, Model model) {
+        model.addAttribute("title", "Add Trip");
+        User user = userService.findByUsername(principal.getName());
+
+        trip = travelService.findOne(trip.getId());
+
+        if (Integer.parseInt(qty) > trip.getMaxPeople()) {
+            model.addAttribute("notEnoughSpots", true);
+            return "forward:/tripDetail?id=" + trip.getId();
+        }
+
+        CartItem cartItem = cartItemService.addTravelToCartItem(trip, user, Integer.parseInt(qty));
+        model.addAttribute("addTravelSuccess", true);
+
+        return "forward:/tripDetail?id=" + trip.getId();
+    }
 
     @RequestMapping(value = "/updateCartItem")
     public String updateShoppingCart(Model model, @ModelAttribute("id") Long cartItemId,
                                      @ModelAttribute("qty") int qty) {
         CartItem cartItem = cartItemService.findById(cartItemId);
-        model.addAttribute("title", "Update " + cartItem.getProduct().getName());
+        if (cartItem.getProduct() != null) {
+            model.addAttribute("title", "Update " + cartItem.getProduct().getName());
+        } else {
+            model.addAttribute("title", "Update " + cartItem.getTravel().getName());
+        }
         cartItem.setQty(qty);
         cartItemService.updateCartItem(cartItem);
 
