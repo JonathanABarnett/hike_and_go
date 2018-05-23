@@ -40,7 +40,7 @@ public class HomeController {
         List<Product> specialList = new ArrayList<>();
 
         // For random specials on home page
-        long maxId = 0;
+       /* long maxId = 0;
 
         for (Product product : productList) {
             if (product.getId() > maxId) {
@@ -58,14 +58,18 @@ public class HomeController {
             } else {
                 i--;
             }
-        }
+        } */
 
         /* Backpack specials
         specialList.add(productService.findOne(1L));
         specialList.add(productService.findOne(2L));
         specialList.add(productService.findOne(3L));
         specialList.add(productService.findOne(4L));
-        */
+    */
+        specialList.add(productService.findOne(1L));
+        specialList.add(productService.findOne(1L));
+        specialList.add(productService.findOne(1L));
+        specialList.add(productService.findOne(1L));
 
         model.addAttribute("specialList", specialList);
 
