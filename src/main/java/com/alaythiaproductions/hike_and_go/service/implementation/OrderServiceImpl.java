@@ -31,9 +31,16 @@ public class OrderServiceImpl implements OrderService {
 
         List<CartItem> cartItemList = cartItemService.findByShoppingCart(shoppingCart);
         for (CartItem cartItem : cartItemList) {
-            Product product = cartItem.getProduct();
-            cartItem.setOrder(order);
-            product.setNumberOfStock(product.getNumberOfStock() - cartItem.getQty());
+            if (cartItem.getProduct() != null) {
+                Product product = cartItem.getProduct();
+                cartItem.setOrder(order);
+                product.setNumberOfStock(product.getNumberOfStock() - cartItem.getQty());
+            }
+            if (cartItem.getTravel() != null) {
+                Travel travel = cartItem.getTravel();
+                cartItem.setOrder(order);
+                travel.setMaxPeople(travel.getMaxPeople() - cartItem.getQty());
+            }
         }
 
         order.setCartItemList(cartItemList);

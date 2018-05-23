@@ -43,6 +43,8 @@
 
                                     <hr/>
 
+                                    <!-- Product -->
+                                    <span th:if="${cartItem.getProduct() != null}">
                                     <div class="form-group col-md-7">
                                         <div class="form-row">
                                             <div class="form-group col">
@@ -67,6 +69,34 @@
                                     </div>
 
                                     <hr/>
+</span>
+                                    <!-- Travel -->
+                                    <span th:if="${cartItem.getTravel() != null}">
+                                    <div class="form-group col-md-7">
+                                        <div class="form-row">
+                                            <div class="form-group col">
+                                                <a th:href="@{/tripDetail(id=${cartItem.travel.id})}">
+                                                    <img class="img-fluid" style="max-width: 100px"
+                                                         th:src="${cartItem.travel.imgUrl}"/>
+                                                </a>
+                                            </div>
+                                            <div class="form-group col text-left">
+                                                <a th:href="@{/tripDetail(id=${cartItem.travel.id})}"><h6
+                                                        th:text="${cartItem.travel.name}"></h6></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <p style="color: green; font-size: large">$<span
+                                                th:text="${#numbers.formatDecimal(cartItem.travel.ourPrice, 0, 2)}"></span>
+                                        </p>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <p style="font-size:large;" th:text="${cartItem.qty}"></p>
+                                    </div>
+
+                                    <hr/>
+                                        </span>
                                 </div>
                             </div>
                         </div>

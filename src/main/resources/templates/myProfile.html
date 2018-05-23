@@ -195,6 +195,7 @@
                                                     <table class="table table-dark table-hover">
                                                         <thead>
                                                         <tr>
+                                                            <span></span>
                                                             <td><strong>Item Name</strong></td>
                                                             <th class="text-center"><strong>Item Price</strong></th>
                                                             <th class="text-center"><strong>Item Quantity</strong></th>
@@ -203,10 +204,12 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr th:each="cartItem : ${cartItemList}">
-                                                            <td data-th-text="${cartItem.product.name}"></td>
-                                                            <td class="text-center" th:text="${cartItem.product.ourPrice}"></td>
-                                                            <td class="text-center" th:text="${cartItem.qty}"></td>
-                                                            <td class="text-right" th:text="${cartItem.subTotal}"></td>
+                                                            <span th:if="${cartItem.getProduct() != null}">
+                                                                <td data-th-text="${cartItem.product.name}"></td>
+                                                                <td class="text-center" th:text="${cartItem.product.ourPrice}"></td>
+                                                                <td class="text-center" th:text="${cartItem.qty}"></td>
+                                                                <td class="text-right" th:text="${cartItem.subTotal}"></td>
+                                                            </span>
                                                         </tr>
                                                         <tr>
                                                             <td></td>

@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <a th:href="@{/productDetail?id=} + ${product.id}">
-                                            <img th:src="${product.imgUrl}" class="img-fluid"/></a>
+                                            <img th:src="${product.imgUrl}" class="img-fluid" style="max-width: 300px; max-height: 300px"/></a>
                                     </div>
                                     <div class="col-sm-8">
                                         <a th:href="@{/productDetail?id=} + ${product.id}"><h4

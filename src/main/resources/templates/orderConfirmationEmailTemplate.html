@@ -6,13 +6,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+          integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous"/>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
 
     <style>
         table {
             border-collapse: collapse;
         }
+
         table, th, td {
             border: 1px solid black;
         }
@@ -26,7 +28,7 @@
 <p>We hope your shopping experience was fun.</p>
 <p>Your order number is: <strong>#<span th:text="${order.id}"></span></strong>.<br/> Here is your order detail:</p>
 <h2>Order Detail for purchase #<span th:text="${order.id}"></span></h2>
-<hr />
+<hr/>
 
 <table>
     <tr>
@@ -35,9 +37,10 @@
         <th>Shipping Address</th>
     </tr>
     <tr>
-        <td><span th:text="${order.billingAddress.billingAddressFirstName} + ' ' + ${order.billingAddress.billingAddressLastName}"></span><br/>
+        <td><span
+                th:text="${order.billingAddress.billingAddressFirstName} + ' ' + ${order.billingAddress.billingAddressLastName}"></span><br/>
             <span th:text="${order.billingAddress.billingAddressStreet1} + ' ' + ${order.billingAddress.billingAddressStreet2}"></span><br/>
-            <span th:text="${order.billingAddress.billingAddressCity} + ', ' + ${order.billingAddress.billingAddressState} + ' ' + ${order.billingAddress.billingAddressZipCode}"></span><br />
+            <span th:text="${order.billingAddress.billingAddressCity} + ', ' + ${order.billingAddress.billingAddressState} + ' ' + ${order.billingAddress.billingAddressZipCode}"></span><br/>
         </td>
         <td>
             <span th:text="${order.payment.holderFirstName}  + ' ' + ${order.payment.holderLastName}"></span><br/>
@@ -48,7 +51,7 @@
         <td>
             <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressLastName}"></span><br/>
             <span th:text="${order.shippingAddress.shippingAddressStreet1} + ' ' + ${order.shippingAddress.shippingAddressStreet2}"></span><br/>
-            <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipCode}"></span><br />
+            <span th:text="${order.shippingAddress.shippingAddressCity} + ', ' + ${order.shippingAddress.shippingAddressState} + ' ' + ${order.shippingAddress.shippingAddressZipCode}"></span><br/>
         </td>
     </tr>
 </table>
@@ -67,10 +70,18 @@
     </thead>
     <tbody>
     <tr th:each="cartItem : ${cartItemList}">
-        <td><span data-th-text="${cartItem.product.name}"></span></td>
-        <td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
-        <td class="text-center" data-th-text="${cartItem.qty}"></td>
-        <td class="text-center" data-th-text="${cartItem.subTotal}"></td>
+        <span th:if="${cartItem.getProduct() != null}">
+            <td><span data-th-text="${cartItem.product.name}"></span></td>
+            <td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
+            <td class="text-center" data-th-text="${cartItem.qty}"></td>
+            <td class="text-center" data-th-text="${cartItem.subTotal}"></td>
+        </span>
+        <span th:if="${cartItem.getTravel() != null}">
+            <td><span data-th-text="${cartItem.travel.name}"></span></td>
+            <td class="text-center" data-th-text="${cartItem.travel.ourPrice}"></td>
+            <td class="text-center" data-th-text="${cartItem.qty}"></td>
+            <td class="text-center" data-th-text="${cartItem.subTotal}"></td>
+        </span>
     </tr>
     <tr>
         <td class="highrow"></td>
@@ -84,24 +95,27 @@
         <td class="emptyrow"></td>
         <td class="emptyrow text-center"><strong>Tax</strong></td>
         <td class="emptyrow text-right" th:with="tax = ${order.orderTotal * 0.08}"
-        th:text="${#numbers.formatDecimal(tax, 0, 2)}"></td>
+            th:text="${#numbers.formatDecimal(tax, 0, 2)}"></td>
     </tr>
     <tr>
         <td class="emptyrow"></td>
         <td class="emptyrow"></td>
         <td class="emptyrow text-center"><strong>Shipping</strong></td>
         <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'groundShipping'">Free</td>
-        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'premiumShipping'" th:with="shipping = ${order.orderTotal * 0.1}"
+        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'premiumShipping'"
+            th:with="shipping = ${order.orderTotal * 0.1}"
             th:text="${#numbers.formatDecimal(shipping, 0, 2)}"></td>
     </tr>
     <tr>
         <td class="emptyrow"><i class="fas fa-barcode"></i></td>
         <td class="emptyrow"></td>
         <td class="emptyrow text-center"><strong>Total</strong></td>
-        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'groundShipping'" th:with="shipping = 0, total = ${order.orderTotal + shipping}"
+        <td class="emptyrow text-right" th:if="${order.shippingMethod} == 'groundShipping'"
+            th:with="shipping = 0, total = ${order.orderTotal + shipping}"
             th:text="${#numbers.formatDecimal(total, 0, 2)}"></td>
         <td class="emptyrow text-right"
-            th:if="${order.shippingMethod} == 'premiumShipping'" th:with="shipping = ${order.orderTotal * 0.1}, total = ${order.orderTotal + shipping}"
+            th:if="${order.shippingMethod} == 'premiumShipping'"
+            th:with="shipping = ${order.orderTotal * 0.1}, total = ${order.orderTotal + shipping}"
             th:text="${#numbers.formatDecimal(total, 0, 2)}"></td>
     </tr>
     </tbody>
