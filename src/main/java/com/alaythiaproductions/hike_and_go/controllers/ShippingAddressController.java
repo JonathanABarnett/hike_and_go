@@ -42,6 +42,7 @@ public class ShippingAddressController {
         model.addAttribute("listOfShippingAddresses", true);
         model.addAttribute("classActiveShipping", true);
         model.addAttribute("listOfCreditCards", true);
+        model.addAttribute("classActiveSupplyOrders", true);
 
         return "myProfile";
     }
@@ -86,6 +87,8 @@ public class ShippingAddressController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("orderList", user.getOrderList());
+
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveShipping", true);
         model.addAttribute("listOfShippingAddresses", true);
@@ -112,6 +115,7 @@ public class ShippingAddressController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
 
             model.addAttribute("addNewShippingAddress", true);
             model.addAttribute("classActiveShipping", true);
@@ -135,6 +139,7 @@ public class ShippingAddressController {
 
             model.addAttribute("userPaymentList", user.getUserPaymentList());
             model.addAttribute("userShippingList", user.getUserShippingList());
+            model.addAttribute("orderList", user.getOrderList());
 
             model.addAttribute("listOfCreditCards", true);
             model.addAttribute("classActiveShipping", true);
@@ -153,6 +158,7 @@ public class ShippingAddressController {
         model.addAttribute("user", user);
         model.addAttribute("userPaymentList", user.getUserPaymentList());
         model.addAttribute("userShippingList", user.getUserShippingList());
+        model.addAttribute("orderList", user.getOrderList());
 
         model.addAttribute("listOfCreditCards", true);
         model.addAttribute("classActiveShipping", true);

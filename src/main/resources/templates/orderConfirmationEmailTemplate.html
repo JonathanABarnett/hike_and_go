@@ -46,7 +46,7 @@
             <span th:text="${order.payment.holderFirstName}  + ' ' + ${order.payment.holderLastName}"></span><br/>
             <span th:text="${order.payment.type}"></span><br/>
             <span th:text="${order.payment.cardNumber}"></span><br/>
-            <span th:text="${order.payment.expiryMonth} + ' ' + ${order.payment.expiryYear}"></span>
+            <span th:text="${order.payment.expiryMonth} + ' / ' + ${order.payment.expiryYear}"></span>
         </td>
         <td>
             <span th:text="${order.shippingAddress.shippingAddressFirstName} + ' ' + ${order.shippingAddress.shippingAddressLastName}"></span><br/>
@@ -62,6 +62,7 @@
 <table>
     <thead>
     <tr>
+        <td hidden="hidden"></td>
         <td><strong>Item Name</strong></td>
         <td class="text-center"><strong>Item Price</strong></td>
         <td class="text-center"><strong>Item Quantity</strong></td>
@@ -70,13 +71,13 @@
     </thead>
     <tbody>
     <tr th:each="cartItem : ${cartItemList}">
-        <span th:if="${cartItem.getProduct() != null}">
+        <span th:if="${cartItem.getProduct() != null}" hidden="hidden">
             <td><span data-th-text="${cartItem.product.name}"></span></td>
             <td class="text-center" data-th-text="${cartItem.product.ourPrice}"></td>
             <td class="text-center" data-th-text="${cartItem.qty}"></td>
             <td class="text-center" data-th-text="${cartItem.subTotal}"></td>
         </span>
-        <span th:if="${cartItem.getTravel() != null}">
+        <span th:if="${cartItem.getTravel() != null}" hidden="hidden">
             <td><span data-th-text="${cartItem.travel.name}"></span></td>
             <td class="text-center" data-th-text="${cartItem.travel.ourPrice}"></td>
             <td class="text-center" data-th-text="${cartItem.qty}"></td>
