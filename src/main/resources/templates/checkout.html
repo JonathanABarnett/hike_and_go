@@ -511,7 +511,7 @@
                                                     </td>
                                                     <td colspan="2">
                                                         <p style="color: green; font-size: large">$<span
-                                                                th:text="${cartItem.product.ourPrice}"
+                                                                th:text="${#numbers.formatDecimal(cartItem.product.ourPrice, 0, 'COMMA', 2, 'POINT')}"
                                                                 th:style="${cartItem.product.numberOfStock}==0? 'text-decoration: line-through' : ''"></span>
                                                         </p>
                                                     </td>
@@ -550,7 +550,7 @@
                                                     </td>
                                                     <td colspan="2">
                                                         <p style="color: green; font-size: large">$<span
-                                                                th:text="${cartItem.travel.ourPrice}"
+                                                                th:text="${#numbers.formatDecimal(cartItem.travel.ourPrice, 0, 'COMMA', 2, 'POINT')}"
                                                                 th:style="${cartItem.travel.maxPeople}==0? 'text-decoration: line-through' : ''"></span>
                                                         </p>
                                                     </td>
@@ -562,63 +562,7 @@
                                                 </tr>
                                                 </tbody>
                                             </table>
-
-                                            <!--
-                                            <div class="row">
-                                                <div class="col-sm-7">
-                                                    <h5>Product</h5>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <h5>Price</h5>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                    <h5>Quantity</h5>
-                                                </div>
-                                            </div> -->
-
-                                            <!-- Display Products from Cart
-                                            <div class="row" th:each="cartItem : ${cartItemList}">
-
-                                                <hr/>
-
-                                                <div class="form-group col-md-7">
-                                                    <div class="form-row">
-                                                        <div class="form-group col">
-                                                            <a th:href="@{/productDetail(id=${cartItem.product.id})}">
-                                                                <img class="img-fluid" style="max-width: 100px"
-                                                                     th:src="${cartItem.product.imgUrl}"/>
-                                                            </a>
-                                                        </div>
-                                                        <div class="form-group col text-left">
-                                                            <a th:href="@{/productDetail(id=${cartItem.product.id})}"><h6
-                                                                    th:text="${cartItem.product.name}"></h6></a>
-                                                            <p th:if="${cartItem.product.numberOfStock&gt;=10}"
-                                                               style="color: green;">In Stock</p>
-                                                            <p th:if="${cartItem.product.numberOfStock&lt;10 and cartItem.product.numberOfStock&gt;0}"
-                                                               style="color: orange;">Only <span
-                                                                    th:text="${cartItem.product.numberOfStock}"> Left in Stock</span>
-                                                            </p>
-                                                            <p th:if="${cartItem.product.numberOfStock==0}"
-                                                               style="color: darkred;">Out of Stock</p>
-                                                            <a th:href="@{/shoppingCart/removeItem?id=} + ${cartItem.id}">Delete
-                                                                All</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-md-2">
-                                                    <p style="color: green; font-size: large">$<span
-                                                            th:text="${cartItem.product.ourPrice}"
-                                                            th:style="${cartItem.product.numberOfStock}==0? 'text-decoration: line-through' : ''"></span>
-                                                    </p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <p style="font-size:large;" th:text="${cartItem.qty}"></p>
-                                                </div>
-
-                                                <hr/>
-                                            </div>
-
--->
+                                            
                                             <div class="row">
                                                 <h4 class="col-sm-12 text-right"><strong style="font-size: large;">Order
                                                     Total (
