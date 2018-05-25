@@ -41,11 +41,9 @@
                             <div class="card-body">
                                 <div class="row" th:each="cartItem : ${cartItemList}">
 
-                                    <!-- <hr/> -->
-
                                     <!-- Product -->
-                                    <span th:if="${cartItem.getProduct() != null}">
-                                        <div class="row">
+                                    <div class="col">
+                                        <div class="row" th:if="${cartItem.getProduct() != null}">
                                             <div class="form-group col-md-7">
                                                 <div class="form-row">
                                                     <div class="form-group col">
@@ -69,11 +67,13 @@
                                                 <p style="font-size:large;" th:text="${cartItem.qty}"></p>
                                             </div>
                                         </div>
-                                    </span>
+                                    </div>
+                                </div>
 
-                                    <!-- Travel -->
-                                    <span th:if="${cartItem.getTravel() != null}">
-                                        <div class="row">
+                                <!-- Travel -->
+                                <div class="row" th:each="cartItem : ${cartItemList}">
+                                    <div class="col">
+                                        <div class="row" th:if="${cartItem.getTravel() != null}">
                                             <div class="form-group col-md-7">
                                                 <div class="form-row">
                                                     <div class="form-group col">
@@ -97,7 +97,7 @@
                                                 <p style="font-size:large;" th:text="${cartItem.qty}"></p>
                                             </div>
                                         </div>
-                                    </span>
+                                    </div>
 
                                 </div>
                             </div>
